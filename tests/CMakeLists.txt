@@ -1,10 +1,6 @@
 # 'Google_test' is the subproject name
 project(Google_tests)
 
-# 'lib' is the folder with Google Test sources
-#add_subdirectory(../tests/lib)
-#include_directories(../tests/lib/googletest/include)
-
 include(FetchContent)
 FetchContent_Declare(
         googletest
@@ -15,10 +11,6 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-
-
-# 'Google_Tests_run' is the target name
-# 'test1.cpp tests2.cpp' are source files with tests
 add_executable(Google_Tests_run tests.cc)
 
 #target_link_libraries(Google_Tests_run s21_matrix_oop)
