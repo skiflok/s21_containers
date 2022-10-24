@@ -2,15 +2,22 @@
 // Created by Lok on 23.10.2022.
 //
 
-#ifndef S21_MATRIX_SRC_FOR_TESTING_H_
-#define S21_MATRIX_SRC_FOR_TESTING_H_
+#ifndef SRC_FOR_TESTING_H_
+#define SRC_FOR_TESTING_H_
+
+
 
 namespace s21 {
 
-class For_testing {
+//class For_testing {
+// public:
+  template<typename T>
+  T sum(T a, T b);
 
-};
+  void print();
+  void printParam(int value);
+//};
 
 } // s21
 
-#endif //S21_MATRIX_SRC_FOR_TESTING_H_
+#endif //SRC_FOR_TESTING_H_

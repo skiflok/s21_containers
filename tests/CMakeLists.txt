@@ -13,6 +13,6 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(Google_Tests_run tests.cc)
 
-#target_link_libraries(Google_Tests_run s21_matrix_oop)
+target_link_libraries(Google_Tests_run for_testing)
 
 target_link_libraries(Google_Tests_run gtest gtest_main)

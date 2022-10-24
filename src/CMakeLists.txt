@@ -3,16 +3,16 @@ project(s21_containers)
 
 set(CMAKE_CXX_STANDARD 14)
 
-#set(HEADER_FILES
-#        s21_.h
-#        )
-#
-#set(SOURCE_FILES
-#        s21_.cc
-#        )
-#
-##add_executable(s21_
-##        s21_.cc
-##        s21_.h)
-#
-#add_library(s21_matrix_oop STATIC ${SOURCE_FILES} ${HEADER_FILES})
+set(HEADER_FILES
+        for_testing.h
+        )
+
+set(SOURCE_FILES
+        for_testing.cc
+        )
+
+#add_executable(for_testing
+#        for_testing.cc
+#        for_testing.h)
+
+add_library(for_testing STATIC ${SOURCE_FILES} ${HEADER_FILES})
