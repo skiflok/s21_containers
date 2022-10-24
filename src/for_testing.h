@@ -5,17 +5,23 @@
 #ifndef SRC_FOR_TESTING_H_
 #define SRC_FOR_TESTING_H_
 
-
-
 namespace s21 {
 
 //class For_testing {
 // public:
-  template<typename T>
-  T sum(T a, T b);
+template<typename T>
+T sum(T a, T b) {
+  return a + b;
+}
 
-  void print();
-  void printParam(int value);
+void print();
+//void printParam(int value);
+
+template<typename T>
+void printParam(T value) {
+  std::cout << value << "\n";
+}
+
 //};
 
 } // s21

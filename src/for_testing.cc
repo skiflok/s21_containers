@@ -7,18 +7,15 @@
 
 namespace s21 {
 
-template<typename T>
-T sum(T a, T b) {
-  return a + b;
-}
+
 
 void print() {
   std::cout << "value" << std::endl;
 }
 
-void printParam(int value) {
-  std::cout << value << std::endl;
-}
+//void printParam(int value) {
+//  std::cout << value << std::endl;
+//}
 
 } // s21
 
