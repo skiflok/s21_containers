@@ -6,13 +6,21 @@
 
 using namespace s21;
 
+class SuiteName : public ::testing::Test {
+ protected:
+
+
+};
+
+
 TEST(TEST, test) {
-  std::cout << "test1" << "\n";
-  print();
-  printParam(123);
-  auto a = sum(2, 4);
+  std::cout << "start test" << "\n";
+  For_testing t;
+  t.print();
+  t.printParam(123);
+  auto a = t.sum(2, 4);
   std::cout << a << "\n";
-  auto b = sum(23.3, (double )234);
+  auto b = t.sum(23.3, (double )234);
   std::cout << b << "\n";
 }
 

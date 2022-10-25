@@ -7,20 +7,9 @@
 
 namespace s21 {
 
+  void For_testing::print() {
+    std::cout << "value" << std::endl;
 
-
-void print() {
-  std::cout << "value" << std::endl;
 }
 
-//void printParam(int value) {
-//  std::cout << value << std::endl;
-//}
-
 } // s21
-
-//int main() {
-//  int a = s21::sum(2, 4);
-//  std::cout << a << "\n";
-//}
-
