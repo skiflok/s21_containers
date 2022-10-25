@@ -6,24 +6,8 @@
 #define SRC_FOR_TESTING_H_
 
 namespace s21 {
-
-//class For_testing {
-// public:
-template<typename T>
-T sum(T a, T b) {
-  return a + b;
-}
-
-void print();
-//void printParam(int value);
-
-template<typename T>
-void printParam(T value) {
-  std::cout << value << "\n";
-}
-
-//};
-
+template <typename T>
+T sum(T x, T y);
 } // s21
 
 #endif //SRC_FOR_TESTING_H_

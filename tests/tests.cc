@@ -3,17 +3,13 @@
 #include <utility>
 
 #include "../src/for_testing.h"
-
 using namespace s21;
 
+
 TEST(TEST, test) {
-  std::cout << "test1" << "\n";
-  print();
-  printParam(123);
-  auto a = sum(2, 4);
-  std::cout << a << "\n";
-  auto b = sum(23.3, (double )234);
-  std::cout << b << "\n";
+  std::cout << "test1"
+            << "\n";
+  std::cout << sum(3, 5) << std::endl;
 }
 
 int main(int argc, char *argv[]) {
