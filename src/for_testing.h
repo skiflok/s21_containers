@@ -8,17 +8,23 @@
 namespace s21 {
 
 class For_testing {
- public:
-template<typename T>
-T sum(T a, T b) {
-  return a + b;
-}
-void print();
 
-template<typename T>
-void printParam(T value) {
-  std::cout << value << "\n";
-}
+ public:
+  template<typename T>
+  T sum(T a, T b) {
+    return a + b;
+  }
+  void print();
+
+  template<typename T>
+  void printParam(T value) {
+    std::cout << value << "\n";
+  }
+  int GetA() const;
+  void SetA(int a);
+
+ private:
+  int a_{};
 
 };
 

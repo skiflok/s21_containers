@@ -9,7 +9,12 @@ namespace s21 {
 
   void For_testing::print() {
     std::cout << "value" << std::endl;
-
+  }
+int For_testing::GetA() const {
+  return a_;
+}
+void For_testing::SetA(int a) {
+  a_ = a;
 }
 
 } // s21
