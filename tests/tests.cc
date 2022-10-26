@@ -9,19 +9,27 @@ using namespace s21;
 class SuiteName : public ::testing::Test {
  protected:
   void SetUp() override {
-
     testing_.SetA(5);
-
+    testing_2_.SetA(144);
   }
 
   For_testing testing_;
-
+  For_testing testing_1_;
+  For_testing testing_2_;
 };
 
 TEST_F(SuiteName, TestName) {
   testing_.print();
+  testing_2_.SetA(121231);
   std::cout << testing_.GetA() << "\n";
 }
+
+TEST_F(SuiteName, TestName1) {
+  testing_.print();
+  std::cout << testing_2_.GetA() << "\n";
+}
+
+
 
 //TEST(TEST, test) {
 //  std::cout << "start test" << "\n";
