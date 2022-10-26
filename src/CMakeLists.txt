@@ -4,11 +4,11 @@ project(s21_containers)
 set(CMAKE_CXX_STANDARD 14)
 
 set(HEADER_FILES
-        for_testing.h
+        vector.h
         )
 
 set(SOURCE_FILES
-        for_testing.cc
+        vector.cc
         )
 
 #add_executable(for_testing
