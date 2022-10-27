@@ -1,43 +1,61 @@
-//
-// Created by Lok on 23.10.2022.
-//
+#ifndef TESTVECTOR_H
+#define TESTVECTOR_H
 
-#ifndef SRC_FOR_TESTING_H_
-#define SRC_FOR_TESTING_H_
-#include <cstddef>
+#include <initializer_list>
+#include <iostream>
+#include <utility>
 
+/*
+HEADER FILE
+*/
+
+// Test vector class with some basic example operations and concepts
 namespace s21 {
-template <typename T>
+template <class T>
 class Vector {
  public:
+  // member types
   using value_type = T;
   using reference = T &;
   using const_reference = const T &;
   using iterator = T *;
   using const_iterator = const T *;
   using size_type = size_t;
-
-  Vector() : m_size_(0U), m_capacity_(0U), arr_(nullptr){};
+  // default constructor (simplified syntax for assigning values to attributes)
+  Vector() : m_size(0U), m_capacity(0U), arr(nullptr) {}
+  // parametrized constructor for fixed size vector (explicit was used in order
+  // to avoid automatic type conversion)
   explicit Vector(size_type n)
-      : m_size_(n), m_capacity_(n), arr_(n ? new T[n] : nullptr) {}
-  //  Vector(std::initializer_list<value_type> const &items);
+      : m_size(n), m_capacity(n), arr(n ? new T[n] : nullptr) {}
+  // initializer list constructor (allows creating lists with initializer lists,
+  // see main.cpp)
+  Vector(std::initializer_list<value_type> const &items);
+  // copy constructor with simplified syntax
   Vector(const Vector &v)
-      : m_size_(v.m_size_), m_capacity_(v.m_capacity_), arr_(v.arr_){};
-  Vector(Vector &&v)
-      : m_size_(v.m_size_), m_capacity_(v.m_capacity_), arr_(v.arr_) {
-    v.arr_ = nullptr;
-    v.m_size_ = 0;
-  };
-  ~Vector() { delete[] arr_; }
-  void reserve_more_capacity(size_type size_);
+      : m_size(v.m_size), m_capacity(v.m_capacity), arr(v.arr){};
+  // move constructor with simplified syntax
+  Vector(Vector &&v) : m_size(v.m_size), m_capacity(v.m_capacity), arr(v.arr) {
+    v.arr = nullptr;
+    v.m_size = 0;
+  }
+  // destructor
+  ~Vector() { delete[] arr; }
+
+  // some method examples
+  // size getter
+  size_type size();
+  // element accessor
+  value_type at(size_type i);
+  // append new element
+  void push_back(value_type v);
 
  private:
-  size_t m_size_{};
-  size_t m_capacity_{};
-  T *arr_{};
-  //   void reserve_more_capacity(size_type size);
+  size_t m_size;
+  size_t m_capacity;
+  T *arr;
+  void reserve_more_capacity(size_type size);
 };
 
 }  // namespace s21
 
-#endif  // SRC_FOR_TESTING_H_
+#endif

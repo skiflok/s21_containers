@@ -3,14 +3,15 @@
 #include <utility>
 
 #include "../src/vector.h"
-using namespace s21;
+//using namespace s21;
 
 
 TEST(TEST, test) {
-//  template <typename T>
-  Vector<int> a(3);
-  a.reserve_more_capacity(3.5);
-
+  s21::Vector<int> v{1, 2, 3, 4, 5};
+  v.push_back(6);
+  for (int i = 0; i < v.size(); i++) {
+    std::cout << v.at(i);
+  }
 }
 
 int main(int argc, char *argv[]) {
