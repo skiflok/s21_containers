@@ -7,9 +7,10 @@ using namespace s21;
 
 
 TEST(TEST, test) {
-  std::cout << "test1"
-            << "\n";
-  std::cout << sum(3, 5) << std::endl;
+//  template <typename T>
+  Vector<int> a(3);
+  a.reserve_more_capacity(3.5);
+
 }
 
 int main(int argc, char *argv[]) {
