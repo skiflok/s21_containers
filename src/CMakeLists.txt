@@ -4,15 +4,15 @@ project(s21_containers)
 set(CMAKE_CXX_STANDARD 14)
 
 set(HEADER_FILES
-        for_testing.h
+        s21_vector.h
         )
 
 set(SOURCE_FILES
-        for_testing.cc
+        s21_vector.cc
         )
 
 #add_executable(for_testing
 #        for_testing.cc
 #        for_testing.h)
 
-add_library(for_testing STATIC ${SOURCE_FILES} ${HEADER_FILES})
+add_library(vector STATIC ${SOURCE_FILES} ${HEADER_FILES})
