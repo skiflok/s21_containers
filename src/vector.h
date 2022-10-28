@@ -1,6 +1,7 @@
 #ifndef TESTVECTOR_H
 #define TESTVECTOR_H
 
+#include <cstring>
 #include <initializer_list>
 #include <iostream>
 #include <utility>
@@ -21,25 +22,15 @@ class Vector {
   using iterator = T *;
   using const_iterator = const T *;
   using size_type = size_t;
-  // default constructor (simplified syntax for assigning values to attributes)
-  Vector() : m_size(0U), m_capacity(0U), arr(nullptr) {}
-  // parametrized constructor for fixed size vector (explicit was used in order
-  // to avoid automatic type conversion)
+  Vector() : m_size_(0U), m_capacity_(0U), arr_(nullptr) {}
   explicit Vector(size_type n)
-      : m_size(n), m_capacity(n), arr(n ? new T[n] : nullptr) {}
-  // initializer list constructor (allows creating lists with initializer lists,
-  // see main.cpp)
+      : m_size_(n), m_capacity_(n), arr_(n ? new T[n] : nullptr) {}
   Vector(std::initializer_list<value_type> const &items);
-  // copy constructor with simplified syntax
-  Vector(const Vector &v)
-      : m_size(v.m_size), m_capacity(v.m_capacity), arr(v.arr){};
+  Vector(const Vector &v);
   // move constructor with simplified syntax
-  Vector(Vector &&v) : m_size(v.m_size), m_capacity(v.m_capacity), arr(v.arr) {
-    v.arr = nullptr;
-    v.m_size = 0;
-  }
+  Vector(Vector &&v);
   // destructor
-  ~Vector() { delete[] arr; }
+  ~Vector() { delete[] arr_; }
 
   // some method examples
   // size getter
@@ -50,9 +41,9 @@ class Vector {
   void push_back(value_type v);
 
  private:
-  size_t m_size;
-  size_t m_capacity;
-  T *arr;
+  size_t m_size_{};
+  size_t m_capacity_{};
+  T *arr_{};
   void reserve_more_capacity(size_type size);
 };
 

@@ -10,7 +10,7 @@ HEADER FILE
 */
 
 // Test vector class with some basic example operations and concepts
-template <class T>
+template <typename T>
 class Vector
 {
     // private attributes
