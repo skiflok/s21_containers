@@ -29,6 +29,10 @@ TEST_F(SuiteName, TestName) {
   pair_.SetSecond(3);
   EXPECT_EQ(pair_.GetFirst(), 2);
   EXPECT_EQ(pair_.GetSecond(), 3);
+
+  testing_.GetPair().GetFirst();
+
+  std::cout << "testing_.GetPair().GetFirst() = " << testing_.GetPair().GetFirst() << "\n";
 }
 
 

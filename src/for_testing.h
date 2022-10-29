@@ -19,6 +19,13 @@ class For_testing {
     this->a_ = a;
   }
 
+  const Pair<T1, T2> &GetPair() const {
+    return pair_;
+  }
+  void SetPair(const Pair<T1, T2> &pair) {
+    pair_ = pair;
+  }
+
  private:
   int a_{};
 
