@@ -19,7 +19,7 @@ class S21Vector {
   }
   
   // default constructor (simplified syntax for assigning values to attributes)
-  S21Vector() : m_size_(0U), m_capacity_(0U), arr_(nullptr) {}
+  S21Vector() : m_size_{}, m_capacity_{}, arr_(nullptr) {}
   // parametrized constructor for fixed size S21Vector (explicit was used in order to
   // avoid automatic type conversion)
   explicit S21Vector(size_t n) : m_size_(n), m_capacity_(n), arr_(n ? new T[n] : nullptr) {}
