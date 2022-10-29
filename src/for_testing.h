@@ -12,11 +12,17 @@ class For_testing {
 
  public:
 
-  int GetA() const {
-    return a_;
+  int GetSize() const {
+    return size_;
   }
-  void SetA(int a) {
-    this->a_ = a;
+  void SetSize(int size) {
+    size_ = size;
+  }
+  int GetCapacity() const {
+    return capacity_;
+  }
+  void SetCapacity(int capacity) {
+    capacity_ = capacity;
   }
 
   Pair<T1, T2> &GetPair()  {
@@ -27,22 +33,21 @@ class For_testing {
   }
 
  private:
-  int a_{};
+  int size_{};
+  int capacity_{100};
 
-//  class Iterator {
-//
-//   public:
-//
-//   private:
-//
-//   public:
-//    Iterator();
-//  };
-//
-//  Iterator iterator_;
+  class Iterator {
+   public:
 
+   private:
 
+   public:
+    Iterator() {};
+  };
+
+  Iterator iterator_;
   Pair<T1, T2> pair_;
+
 
 };
 
