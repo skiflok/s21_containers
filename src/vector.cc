@@ -11,17 +11,43 @@ void s21::Vector<T>::reserve_more_capacity(size_t size) {
     delete[] arr_;
     arr_ = buff;
     m_capacity_ = size;
+<<<<<<< HEAD
+=======
   }
 }
 
-// initializer list constructor (allows creating lists with initializer lists,
-// see main.cpp)
+template <typename T>
+s21::Vector<T>::Vector(const Vector<value_type> &v) {
+  if (this != &v) {
+    m_size_ = v.m_size_;
+    m_capacity_ = v.m_capacity_;
+    arr_ = new value_type[v.m_capacity_]{};
+    std::memcpy(arr_, v.arr_, m_size_ * sizeof(value_type));
+  }
+}
+
+template <typename T>
+s21::Vector<T>::Vector(Vector<value_type> &&v)
+    : m_size_(v.m_size_), m_capacity_(v.m_capacity_), arr_(v.arr_) {
+  if (this != &v) {
+    v.m_size_ = 0;
+    v.m_capacity_ = 0;
+    v.arr_ = nullptr;
+>>>>>>> 3225524d6919a0b16a51dfd10183e2b4ce93a4c5
+  }
+}
+
 template <typename T>
 s21::Vector<T>::Vector(std::initializer_list<value_type> const &items) {
   arr_ = new value_type[items.size()];
   int i = 0;
   //  std::initializer_list<int>::iterator itr
+<<<<<<< HEAD
   for (std::initializer_list<int>::iterator itr = items.begin(); itr != items.end(); itr++) {
+=======
+  for (std::initializer_list<int>::iterator itr = items.begin();
+       itr != items.end(); itr++) {
+>>>>>>> 3225524d6919a0b16a51dfd10183e2b4ce93a4c5
     arr_[i] = *itr;
     i++;
   }

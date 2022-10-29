@@ -11,7 +11,7 @@ ifeq ($(OS), Darwin)
 	LIBFLAGS = -lm -lgtest -lstdc++
 else
 	LIBFLAGS=-lstdc++ `pkg-config --cflags --libs gtest`
-endif
+endifg
 
 all: clean test
 
