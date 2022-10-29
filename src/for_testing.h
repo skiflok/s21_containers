@@ -19,7 +19,7 @@ class For_testing {
     this->a_ = a;
   }
 
-  const Pair<T1, T2> &GetPair() const {
+  Pair<T1, T2> &GetPair()  {
     return pair_;
   }
   void SetPair(const Pair<T1, T2> &pair) {
@@ -40,6 +40,8 @@ class For_testing {
 //  };
 //
 //  Iterator iterator_;
+
+
   Pair<T1, T2> pair_;
 
 };

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <utility>
+//#include <utility>
 
 #include "../src/for_testing.h"
 
@@ -30,9 +30,13 @@ TEST_F(SuiteName, TestName) {
   EXPECT_EQ(pair_.GetFirst(), 2);
   EXPECT_EQ(pair_.GetSecond(), 3);
 
-  testing_.GetPair().GetFirst();
+  EXPECT_EQ(testing_.GetPair().GetFirst(), 0);
+  std::cout << "1st = " << testing_.GetPair().GetFirst() << "\n";
+  testing_.GetPair().SetFirst(123);
+  EXPECT_EQ(testing_.GetPair().GetFirst(), 123);
+  std::cout << "1st = " << testing_.GetPair().GetFirst() << "\n";
 
-  std::cout << "testing_.GetPair().GetFirst() = " << testing_.GetPair().GetFirst() << "\n";
+
 }
 
 
