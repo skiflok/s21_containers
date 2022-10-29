@@ -35,6 +35,7 @@ class For_testing {
  private:
   int size_{};
   int capacity_{100};
+  Pair<T1, T2> arr [100];
 
   class Iterator {
    public:
