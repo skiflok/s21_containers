@@ -9,38 +9,30 @@ using namespace s21;
 class SuiteName : public ::testing::Test {
  protected:
   void SetUp() override {
-    testing_.SetA(5);
-    testing_2_.SetA(144);
+//    testing_.SetA(5);
   }
 
-  For_testing testing_;
-  For_testing testing_1_;
-  For_testing testing_2_;
+  For_testing<int, int> testing_;
+  Pair<int, int> pair_;
+
 };
 
 TEST_F(SuiteName, TestName) {
-  testing_.print();
-  testing_2_.SetA(121231);
+  EXPECT_EQ(testing_.GetA(), 0);
+  testing_.SetA(10);
+  EXPECT_EQ(testing_.GetA(), 10);
   std::cout << testing_.GetA() << "\n";
+
+  EXPECT_EQ(pair_.GetFirst(), 0);
+  EXPECT_EQ(pair_.GetSecond(), 0);
+  pair_.SetFirst(2);
+  pair_.SetSecond(3);
+  EXPECT_EQ(pair_.GetFirst(), 2);
+  EXPECT_EQ(pair_.GetSecond(), 3);
 }
 
-TEST_F(SuiteName, TestName1) {
-  testing_.print();
-  std::cout << testing_2_.GetA() << "\n";
-}
 
 
-
-//TEST(TEST, test) {
-//  std::cout << "start test" << "\n";
-//  For_testing t;
-//  t.print();
-//  t.printParam(123);
-//  auto a = t.sum(2, 4);
-//  std::cout << a << "\n";
-//  auto b = t.sum(23.3, (double )234);
-//  std::cout << b << "\n";
-//}
 
 int main(int argc, char *argv[]) {
   testing::InitGoogleTest(&argc, argv);
