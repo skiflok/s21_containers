@@ -9,7 +9,7 @@
 
 namespace s21 {
 template<class T1, class T2>
-class For_testing {
+class For_testing : public Container {
 
  public:
 
