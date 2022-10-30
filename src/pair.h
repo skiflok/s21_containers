@@ -5,10 +5,12 @@
 #ifndef SRC_PAIR_H_
 #define SRC_PAIR_H_
 
+#include "container.h"
+
 namespace s21 {
 
 template<class T1, class T2>
-class Pair {
+class Pair : public Container{
 
  public:
   Pair() : first_(0), second_(0) {};

@@ -5,6 +5,7 @@
 #ifndef SRC_FOR_TESTING_H_
 #define SRC_FOR_TESTING_H_
 #include "pair.h"
+#include "container.h"
 
 namespace s21 {
 template<class T1, class T2>
