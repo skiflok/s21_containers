@@ -9,10 +9,14 @@ void abstract<T>::Print() {
   }
 }
 template <typename T>
-void abstract<T>::SetKey(int key) { key_ = key; }
+void abstract<T>::SetKey(int key) {
+  key_ = key;
+}
 
 template <typename T>
-void abstract<T>::SetName(std::string name) { name_ = name; }
+void abstract<T>::SetName(std::string name) {
+  name_ = name;
+}
 
 template <typename T>
 void heir<T>::Print() {
@@ -20,19 +24,30 @@ void heir<T>::Print() {
   abstract<T>::Print();
   std::cout << (brain_ ? "has brain" : "hasn't brain") << std::endl;
 }
-//template <typename T>
-//void abstract<T>::InClass::Print() {
-//  std::cout << "__________________" << std::endl;
-//  std::cout << "I am class encapsulate in __abstract_class__";
-//}
+// template <typename T>
+// void abstract<T>::InClass::Print() {
+//   std::cout << "__________________" << std::endl;
+//   std::cout << "I am class encapsulate in __abstract_class__";
+// }
 
 int main() {
-  abstract<int> test(1, "abstract", 5);
-  test.Print();
+  //  abstract<int> test(1, "abstract", 5);
+  //  test.Print();
+  std::vector<int> a{1, 2, 3, 4};
+  for (auto i = a.begin(); i < a.end(); ++i) {
+    std::cout << *i << " ";
+  }
 
-//  heir test2(2, "heir", false);
-//  test2.Print();
-//
-//  abstract::InClass test3(3, "InClass");
-//  test3.Print();
+  std::cout << "\ncapacity = " << a.capacity() << std::endl;
+  std::cout << "size = " << a.size() << std::endl;
+
+  for (auto i = 0; i < a.size(); ++i) {
+    std::cout << a.at(i) << " ";
+  }
+
+  //  heir test2(2, "heir", false);
+  //  test2.Print();
+  //
+  //  abstract::InClass test3(3, "InClass");
+  //  test3.Print();
 }

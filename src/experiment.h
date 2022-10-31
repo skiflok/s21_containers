@@ -1,5 +1,6 @@
 #include <cstring>
 #include <iostream>
+#include <vector>
 
 template <typename T>
 class abstract {
