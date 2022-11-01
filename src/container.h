@@ -11,14 +11,13 @@ class Container {
 
  public:
   Container(){}
-  virtual ~Container() =0;
+  virtual ~Container() = 0;
 
  private:
 
 };
 
 Container::~Container() {}
-
 
 
 } // s21

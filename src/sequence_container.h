@@ -9,7 +9,8 @@
 
 namespace s21 {
 
-class SequenceContainer {
+template<class T>
+class SequenceContainer : public Container {
 
  public:
   SequenceContainer(){}
@@ -19,6 +20,7 @@ class SequenceContainer {
 
 };
 
+template<class T>
 SequenceContainer::~SequenceContainer() {}
 
 } // s21

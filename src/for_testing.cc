@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "for_testing.h"
+//#include "for_testing.h"
 
 namespace s21 {
 

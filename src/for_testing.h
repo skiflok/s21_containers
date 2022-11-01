@@ -5,13 +5,13 @@
 #ifndef SRC_FOR_TESTING_H_
 #define SRC_FOR_TESTING_H_
 #include "pair.h"
-#include "sequence_container.h"
 
 namespace s21 {
 template<class T1, class T2>
-class For_testing : public SequenceContainer {
+class For_testing {
 
  public:
+
 
   int GetSize() const {
     return size_;
