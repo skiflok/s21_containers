@@ -96,8 +96,7 @@ template<class value_type>
 S21Vector<value_type>::S21Vector(const std::initializer_list<value_type> &items) {
   arr = new value_type[items.size()];
   int i = 0;
-  for (auto it = items.begin(); it != items.end(); it++)
-  {
+  for (auto it = items.begin(); it != items.end(); it++) {
     arr[i] = *it;
     i++;
   }
@@ -114,10 +113,13 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(const S21Vector &v) {
 // not ready
 template<class value_type>
 S21Vector<value_type> &S21Vector<value_type>::operator=(S21Vector &&v) noexcept {
-
   return *this;
 }
 
+template<class value_type>
+typename S21Vector<value_type>::reference S21Vector<value_type>::at(S21Vector::size_type pos) {
+  return arr[pos];
+}
 
 
 } // s21
