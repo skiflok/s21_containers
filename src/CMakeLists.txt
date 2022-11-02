@@ -3,17 +3,19 @@ project(s21_containers)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(HEADER_FILES
-        for_testing.h
-        )
+#set(HEADER_FILES
+#        for_testing.h
+#        )
+#
+#set(SOURCE_FILES
+#        for_testing.cc
+#        )
 
-set(SOURCE_FILES
-        for_testing.cc
-        )
 
-add_library(for_testing STATIC ${SOURCE_FILES} ${HEADER_FILES})
 
-add_library(pair STATIC pair.cc pair.h)
+
+
+#add_library(pair STATIC pair.cc pair.h)
 
 #cmake_minimum_required(VERSION 3.22)
 #project(CPP2_s21_containers_0)

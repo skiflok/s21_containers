@@ -42,7 +42,7 @@ class S21Vector {
   // copy constructor with simplified syntax
   S21Vector(const S21Vector &v) : size_(v.size_), capacity_(v.capacity_), arr(v.arr) {};
   // move constructor with simplified syntax
-  S21Vector(S21Vector &&v) : size_(v.size_), capacity_(v.capacity_), arr(v.arr)
+  S21Vector(S21Vector &&v)  noexcept : size_(v.size_), capacity_(v.capacity_), arr(v.arr)
   {
     v.arr = nullptr;
     v.size_ = 0;

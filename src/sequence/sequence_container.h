@@ -5,7 +5,7 @@
 #ifndef S21_CONTAINERS_SRC_SEQUENCE_CONTAINER_H_
 #define S21_CONTAINERS_SRC_SEQUENCE_CONTAINER_H_
 
-#include "container.h"
+#include "../container.h"
 
 namespace s21 {
 
