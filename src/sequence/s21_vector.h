@@ -17,7 +17,7 @@ template<class T>
 class S21Vector {
 
  public:
-  // member types
+  // Vector Member type
   using value_type = T;
   using reference = T &;
   using const_reference = const T &;
@@ -31,6 +31,8 @@ class S21Vector {
   T* arr;
 
  public:
+
+//  Vector Member functions
 
   // default constructor (simplified syntax for assigning values to attributes)
   S21Vector() : size_(0U), capacity_(0U), arr(nullptr) {}
@@ -51,16 +53,37 @@ class S21Vector {
   // destructor
   ~S21Vector() { delete[] arr; }
 
-  void print(){
-    std::cout << "vector" << std::endl;
+  S21Vector &operator=(const S21Vector &v);
+  S21Vector &operator=(S21Vector &&v) noexcept ;
+
+//  Vector Element access
+
+
+// MY TESTS
+  void TestPrint(){
+    std::cout << "TestPrint" << std::endl;
   }
 
 };
 
-template<class T>
-S21Vector<T>::S21Vector(const std::initializer_list<value_type> &items) {
+template<class value_type>
+S21Vector<value_type>::S21Vector(const std::initializer_list<value_type> &items) {
 
 }
+
+// not ready
+template<class value_type>
+S21Vector<value_type> &S21Vector<value_type>::operator=(const S21Vector &v) {
+  return *this;
+}
+
+// not ready
+template<class value_type>
+S21Vector<value_type> &S21Vector<value_type>::operator=(S21Vector &&v)  noexcept {
+
+  return *this;
+}
+
 
 } // s21
 

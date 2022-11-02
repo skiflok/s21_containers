@@ -17,7 +17,7 @@ class S21Vector_test : public ::testing::Test {
 
 
 TEST_F(S21Vector_test, FirstTest) {
-  vector_.print();
+  vector_.TestPrint();
 }
 
 
