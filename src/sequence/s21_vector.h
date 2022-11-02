@@ -94,7 +94,15 @@ class S21Vector {
 
 template<class value_type>
 S21Vector<value_type>::S21Vector(const std::initializer_list<value_type> &items) {
-
+  arr = new value_type[items.size()];
+  int i = 0;
+  for (auto it = items.begin(); it != items.end(); it++)
+  {
+    arr[i] = *it;
+    i++;
+  }
+  size_ = items.size();
+  capacity_ = items.size();
 }
 
 // not ready
@@ -109,6 +117,8 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(S21Vector &&v) noexcept 
 
   return *this;
 }
+
+
 
 } // s21
 
