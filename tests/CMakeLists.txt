@@ -1,4 +1,5 @@
 # 'Google_test' is the subproject name
+cmake_minimum_required(VERSION 3.23)
 project(Google_tests)
 
 include(FetchContent)
@@ -13,6 +14,6 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(Google_Tests_run tests.cc)
 
-target_link_libraries(Google_Tests_run vector)
+target_link_libraries(Google_Tests_run for_testing pair)
 
 target_link_libraries(Google_Tests_run gtest gtest_main)
