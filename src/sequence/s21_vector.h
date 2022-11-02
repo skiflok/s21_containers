@@ -5,8 +5,6 @@
 #ifndef S21_CONTAINERS_SRC_S21_VECTOR_H_
 #define S21_CONTAINERS_SRC_S21_VECTOR_H_
 
-
-
 #include <utility>
 #include <cstddef>
 #include <initializer_list>
@@ -28,7 +26,7 @@ class S21Vector {
  private:
   size_type size_;
   size_type capacity_;
-  T* arr;
+  T *arr;
 
  public:
 
@@ -44,8 +42,7 @@ class S21Vector {
   // copy constructor with simplified syntax
   S21Vector(const S21Vector &v) : size_(v.size_), capacity_(v.capacity_), arr(v.arr) {};
   // move constructor with simplified syntax
-  S21Vector(S21Vector &&v)  noexcept : size_(v.size_), capacity_(v.capacity_), arr(v.arr)
-  {
+  S21Vector(S21Vector &&v) noexcept: size_(v.size_), capacity_(v.capacity_), arr(v.arr) {
     v.arr = nullptr;
     v.size_ = 0;
   }
@@ -54,13 +51,42 @@ class S21Vector {
   ~S21Vector() { delete[] arr; }
 
   S21Vector &operator=(const S21Vector &v);
-  S21Vector &operator=(S21Vector &&v) noexcept ;
+  S21Vector &operator=(S21Vector &&v) noexcept;
 
 //  Vector Element access
 
+  reference at(size_type pos);    // access specified element with bounds checking
+  reference operator[](size_type pos);    //access specified element
+  const_reference front();    //access the first element
+  const_reference back();    //access the last element
+  T *data();    //direct access to the underlying array
+
+  // Vector Iterators
+
+  iterator begin();    //returns an iterator to the beginning
+  iterator end();    //returns an iterator to the end
+
+  // Vector Capacity
+
+  bool empty();    //checks whether the container is empty
+  size_type size();    //returns the number of elements
+  size_type max_size();    //returns the maximum possible number of elements
+  void reserve(size_type size);    //allocate storage of size elements and copies current array elements to a newely allocated array
+  size_type capacity();    //returns the number of elements that can be held in currently allocated storage
+  void shrink_to_fit(); //reduces memory usage by freeing unused memory
+
+  // Vector Modifiers
+
+  void clear();    //clears the contents
+  iterator insert(iterator pos,
+                  const_reference value);    //inserts elements into concrete pos and returns the iterator that points to the new element
+  void erase(iterator pos);    //erases element at pos
+  void push_back(const_reference value);    //adds an element to the end
+  void pop_back();    //removes the last element
+  void swap(S21Vector &other);    //swaps the contents
 
 // MY TESTS
-  void TestPrint(){
+  void TestPrint() {
     std::cout << "TestPrint" << std::endl;
   }
 
@@ -79,11 +105,10 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(const S21Vector &v) {
 
 // not ready
 template<class value_type>
-S21Vector<value_type> &S21Vector<value_type>::operator=(S21Vector &&v)  noexcept {
+S21Vector<value_type> &S21Vector<value_type>::operator=(S21Vector &&v) noexcept {
 
   return *this;
 }
-
 
 } // s21
 
