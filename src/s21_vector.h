@@ -55,8 +55,8 @@ class S21Vector {
     std::cout << "vector" << std::endl;
   }
 
-
 };
+
 template<class T>
 S21Vector<T>::S21Vector(const std::initializer_list<value_type> &items) {
 
