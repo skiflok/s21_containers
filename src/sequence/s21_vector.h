@@ -23,32 +23,25 @@ class S21Vector {
   using const_iterator = const T *;
   using size_type = size_t;
 
- private:
-  size_type size_;
-  size_type capacity_;
-  T *arr;
-
- public:
-
-//  Vector Member functions
+  //  Vector Member functions
 
   // default constructor (simplified syntax for assigning values to attributes)
-  S21Vector() : size_(0U), capacity_(0U), arr(nullptr) {}
+  S21Vector() : size_(0U), capacity_(0U), arr_(nullptr) {}
   // parametrized constructor for fixed size vector (explicit was used in order to
   // avoid automatic type conversion)
-  explicit S21Vector(size_type n) : size_(n), capacity_(n), arr(n ? new T[n] : nullptr) {}
+  explicit S21Vector(size_type n) : size_(n), capacity_(n), arr_(n ? new T[n] : nullptr) {}
   // initializer list constructor (allows creating lists with initializer lists, see main.cpp)
   S21Vector(std::initializer_list<value_type> const &items);
   // copy constructor with simplified syntax
-  S21Vector(const S21Vector &v) : size_(v.size_), capacity_(v.capacity_), arr(v.arr) {};
+  S21Vector(const S21Vector &v) : size_(v.size_), capacity_(v.capacity_), arr_(v.arr_) {};
   // move constructor with simplified syntax
-  S21Vector(S21Vector &&v) noexcept: size_(v.size_), capacity_(v.capacity_), arr(v.arr) {
-    v.arr = nullptr;
+  S21Vector(S21Vector &&v) noexcept: size_(v.size_), capacity_(v.capacity_), arr_(v.arr_) {
+    v.arr_ = nullptr;
     v.size_ = 0;
   }
 
   // destructor
-  ~S21Vector() { delete[] arr; }
+  ~S21Vector() { delete[] arr_; }
 
   S21Vector &operator=(const S21Vector &v);
   S21Vector &operator=(S21Vector &&v) noexcept;
@@ -90,14 +83,19 @@ class S21Vector {
     std::cout << "TestPrint" << std::endl;
   }
 
+ private:
+  size_type size_;
+  size_type capacity_;
+  T *arr_;
+
 };
 
 template<class value_type>
 S21Vector<value_type>::S21Vector(const std::initializer_list<value_type> &items) {
-  arr = new value_type[items.size()];
+  arr_ = new value_type[items.size()];
   int i = 0;
   for (auto it = items.begin(); it != items.end(); it++) {
-    arr[i] = *it;
+    arr_[i] = *it;
     i++;
   }
   size_ = items.size();
@@ -107,6 +105,21 @@ S21Vector<value_type>::S21Vector(const std::initializer_list<value_type> &items)
 // not ready
 template<class value_type>
 S21Vector<value_type> &S21Vector<value_type>::operator=(const S21Vector &v) {
+  bool is_not_ready_to_return = true;
+
+  if (this->arr_ == v.arr_) {
+    is_not_ready_to_return = false;
+  }
+
+  if (is_not_ready_to_return) {
+    if (this->arr_ != nullptr) delete [] this->arr_;
+    this->capacity_ = v.capacity_;
+    this->size_ = v.size_;
+    arr_ = new value_type[capacity_];
+    if (!this->arr_) throw std::bad_alloc();
+    std::copy(v.arr_, v.arr_+size_, this->arr_);
+  }
+  std::cout << "EXECUTE operator=(const S21Vector &v)" << std::endl;
   return *this;
 }
 
@@ -118,9 +131,12 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(S21Vector &&v) noexcept 
 
 template<class value_type>
 typename S21Vector<value_type>::reference S21Vector<value_type>::at(S21Vector::size_type pos) {
-  return arr[pos];
+  return arr_[pos];
 }
-
+template<class value_type>
+typename S21Vector<value_type>::reference S21Vector<value_type>::operator[](S21Vector::size_type pos) {
+   return arr_[pos];;
+}
 
 } // s21
 
