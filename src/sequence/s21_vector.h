@@ -83,6 +83,35 @@ class S21Vector {
     std::cout << "TestPrint" << std::endl;
   }
 
+//  bool operator==(const S21Vector<value_type> &other) {
+//    bool equal = false;
+//    bool skip = false;
+//
+//    if (this == other) {
+//      equal = true;
+//      skip = true;
+//    }
+//
+//    if (!skip) {
+//      if(this->size_ != other.size_ || this->capacity_ != other.capacity_)  {
+//        equal = false;
+//        skip = true;
+//      }
+//    }
+//
+//    if (!skip) {
+//      equal = true;
+//      for (int i = 0; i < this->size_; ++i) {
+//        if ((*this)->arr_[i] != other.arr_[i]) {
+//          equal = false;
+//          break;
+//        }
+//      }
+//    }
+//
+//    return equal;
+//  }
+
  private:
   size_type size_;
   size_type capacity_;
@@ -126,6 +155,7 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(const S21Vector &v) {
 // not ready
 template<class value_type>
 S21Vector<value_type> &S21Vector<value_type>::operator=(S21Vector &&v) noexcept {
+
   return *this;
 }
 
