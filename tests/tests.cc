@@ -22,7 +22,9 @@ TEST_F(S21Vector_test, _operatorCopy) {
   s_21_vector_empty = vector_1_;
   test = test2;
   EXPECT_EQ(test, test2);
-//  EXPECT_EQ(s_21_vector_empty, vector_1_);
+
+  std::cout << (s_21_vector_empty == vector_1_) << std::endl;
+  EXPECT_TRUE(s_21_vector_empty == vector_1_);
 }
 
 TEST_F(S21Vector_test, _operatorMove) {
@@ -37,6 +39,10 @@ TEST_F(S21Vector_test, front) {
 TEST_F(S21Vector_test, back) {
   EXPECT_EQ(vector_1_.back(), 5);
 
+}
+
+TEST_F(S21Vector_test, data) {
+  EXPECT_EQ(*vector_1_.data(), 1);
 }
 
 

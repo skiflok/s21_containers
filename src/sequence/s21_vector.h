@@ -84,34 +84,34 @@ class S21Vector {
     std::cout << "TestPrint" << std::endl;
   }
 
-//  bool operator==(const S21Vector<value_type> &other) {
-//    bool equal = false;
-//    bool skip = false;
-//
-//    if (this == other) {
-//      equal = true;
-//      skip = true;
-//    }
-//
-//    if (!skip) {
-//      if(this->size_ != other.size_ || this->capacity_ != other.capacity_)  {
-//        equal = false;
-//        skip = true;
-//      }
-//    }
-//
-//    if (!skip) {
-//      equal = true;
-//      for (int i = 0; i < this->size_; ++i) {
-//        if ((*this)->arr_[i] != other.arr_[i]) {
-//          equal = false;
-//          break;
-//        }
-//      }
-//    }
-//
-//    return equal;
-//  }
+  bool operator==(const S21Vector<value_type> &other) {
+    bool equal = false;
+    bool skip = false;
+
+    if (this == &other) {
+      equal = true;
+      skip = true;
+    }
+
+    if (!skip) {
+      if(this->size_ != other.size_ || this->capacity_ != other.capacity_)  {
+        equal = false;
+        skip = true;
+      }
+    }
+
+    if (!skip) {
+      equal = true;
+      for (int i = 0; i < this->size_; ++i) {
+        if ((this)->arr_[i] != other.arr_[i]) {
+          equal = false;
+          break;
+        }
+      }
+    }
+
+    return equal;
+  }
 
  private:
   size_type size_;
@@ -164,7 +164,6 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(S21Vector &&v) noexcept 
         this->size_ = 0;
         this->capacity_ = 0;
       }
-//      std::swap(*this, v);
       std::swap(this->arr_, v.arr_);
       std::swap(this->size_, v.size_);
       std::swap(this->capacity_, v.capacity_);
@@ -191,6 +190,10 @@ typename S21Vector<value_type>::const_reference S21Vector<value_type>::front() {
 template<class value_type>
 typename S21Vector<value_type>::const_reference S21Vector<value_type>::back() {
   return at(size_ - 1);
+}
+template<class T>
+T *S21Vector<T>::data() {
+  return arr_;
 }
 
 } // s21
