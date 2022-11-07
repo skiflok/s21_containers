@@ -8,6 +8,7 @@
 #include <utility>
 #include <cstddef>
 #include <initializer_list>
+#include <iostream>
 
 namespace s21 {
 
@@ -141,12 +142,12 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(const S21Vector &v) {
   }
 
   if (is_not_ready_to_return) {
-    if (this->arr_ != nullptr) delete [] this->arr_;
+    if (this->arr_ != nullptr) delete[] this->arr_;
     this->capacity_ = v.capacity_;
     this->size_ = v.size_;
     arr_ = new value_type[capacity_];
     if (!this->arr_) throw std::bad_alloc();
-    std::copy(v.arr_, v.arr_+size_, this->arr_);
+    std::copy(v.arr_, v.arr_ + size_, this->arr_);
   }
   std::cout << "EXECUTE operator=(const S21Vector &v)" << std::endl;
   return *this;
@@ -158,7 +159,7 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(S21Vector &&v) noexcept 
   if (this != &v) {
     if (this->arr_ != v.arr_) {
       if (this->arr_ != nullptr) {
-        delete [] this->arr_;
+        delete[] this->arr_;
         this->arr_ = nullptr;
         this->size_ = 0;
         this->capacity_ = 0;
@@ -180,7 +181,16 @@ typename S21Vector<value_type>::reference S21Vector<value_type>::at(S21Vector::s
 }
 template<class value_type>
 typename S21Vector<value_type>::reference S21Vector<value_type>::operator[](S21Vector::size_type pos) {
-   return arr_[pos];;
+  return arr_[pos];
+}
+template<class value_type>
+typename S21Vector<value_type>::const_reference S21Vector<value_type>::front() {
+  return at(0);
+}
+
+template<class value_type>
+typename S21Vector<value_type>::const_reference S21Vector<value_type>::back() {
+  return at(size_ - 1);
 }
 
 } // s21

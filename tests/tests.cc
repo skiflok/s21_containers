@@ -30,6 +30,15 @@ TEST_F(S21Vector_test, _operatorMove) {
 //  EXPECT_EQ(s_21_vector_empty, vector_1_);
 }
 
+TEST_F(S21Vector_test, front) {
+  EXPECT_EQ(vector_1_.front(), 1);
+}
+
+TEST_F(S21Vector_test, back) {
+  EXPECT_EQ(vector_1_.back(), 5);
+
+}
+
 
 //TEST_F(S21Vector_test, FirstTest) {
 //  test.insert(test.begin() + 2, test2.begin(), test2.begin() + 10);
