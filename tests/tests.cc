@@ -18,12 +18,16 @@ class S21Vector_test : public ::testing::Test {
   std::vector<int> test2 = {10, 20, 30, 40};
 };
 
-TEST_F(S21Vector_test, _operatorCopyMove) {
+TEST_F(S21Vector_test, _operatorCopy) {
   s_21_vector_empty = vector_1_;
   test = test2;
   EXPECT_EQ(test, test2);
 //  EXPECT_EQ(s_21_vector_empty, vector_1_);
+}
 
+TEST_F(S21Vector_test, _operatorMove) {
+  s_21_vector_empty = std::move(vector_1_);
+//  EXPECT_EQ(s_21_vector_empty, vector_1_);
 }
 
 

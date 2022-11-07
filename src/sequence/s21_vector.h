@@ -155,7 +155,22 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(const S21Vector &v) {
 // not ready
 template<class value_type>
 S21Vector<value_type> &S21Vector<value_type>::operator=(S21Vector &&v) noexcept {
-
+  if (this != &v) {
+    if (this->arr_ != v.arr_) {
+      if (this->arr_ != nullptr) {
+        delete [] this->arr_;
+        this->arr_ = nullptr;
+        this->size_ = 0;
+        this->capacity_ = 0;
+      }
+//      std::swap(*this, v);
+      std::swap(this->arr_, v.arr_);
+      std::swap(this->size_, v.size_);
+      std::swap(this->capacity_, v.capacity_);
+    }
+  }
+//  std::swap(*this, v);
+  std::cout << "EXECUTE operator=(const S21Vector &&v)" << std::endl;
   return *this;
 }
 
