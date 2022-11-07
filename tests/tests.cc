@@ -29,7 +29,14 @@ TEST_F(S21Vector_test, _operatorCopy) {
 
 TEST_F(S21Vector_test, _operatorMove) {
   s_21_vector_empty = std::move(vector_1_);
-//  EXPECT_EQ(s_21_vector_empty, vector_1_);
+}
+
+TEST_F(S21Vector_test, at) {
+
+}
+
+TEST_F(S21Vector_test, brackets) {
+
 }
 
 TEST_F(S21Vector_test, front) {
@@ -45,13 +52,23 @@ TEST_F(S21Vector_test, data) {
   EXPECT_EQ(*vector_1_.data(), 1);
 }
 
+TEST_F(S21Vector_test, iterator_begin) {
+  EXPECT_EQ(*vector_1_.begin(), 1);
+}
 
-//TEST_F(S21Vector_test, FirstTest) {
-//  test.insert(test.begin() + 2, test2.begin(), test2.begin() + 10);
-//  for (int a : test) {
-//    std::cout << a << '\t';
-//  }
-//}
+TEST_F(S21Vector_test, iterator_end) {
+  EXPECT_EQ(*vector_1_.end(), 5);
+}
+
+TEST_F(S21Vector_test, empty) {
+  EXPECT_TRUE(s_21_vector_empty.empty());
+  EXPECT_FALSE(vector_1_.empty());
+}
+
+TEST_F(S21Vector_test, size) {
+  EXPECT_EQ(s_21_vector_empty.size(), 0);
+  EXPECT_EQ(vector_1_.size(), 5);
+}
 
 int main(int argc, char *argv[]) {
   testing::InitGoogleTest(&argc, argv);

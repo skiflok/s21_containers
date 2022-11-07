@@ -94,7 +94,7 @@ class S21Vector {
     }
 
     if (!skip) {
-      if(this->size_ != other.size_ || this->capacity_ != other.capacity_)  {
+      if (this->size_ != other.size_ || this->capacity_ != other.capacity_) {
         equal = false;
         skip = true;
       }
@@ -194,6 +194,23 @@ typename S21Vector<value_type>::const_reference S21Vector<value_type>::back() {
 template<class T>
 T *S21Vector<T>::data() {
   return arr_;
+}
+template<class value_type>
+typename S21Vector<value_type>::iterator S21Vector<value_type>::begin() {
+  return this->arr_;
+}
+
+template<class value_type>
+typename S21Vector<value_type>::iterator S21Vector<value_type>::end() {
+  return this->arr_ + size_ - 1;
+}
+template<class value_type>
+bool S21Vector<value_type>::empty() {
+  return size_ == 0;
+}
+template<class value_type>
+typename S21Vector<value_type>::size_type S21Vector<value_type>::size() {
+  return size_;
 }
 
 } // s21
