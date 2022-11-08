@@ -14,7 +14,7 @@ class S21Vector_test : public ::testing::Test {
   S21Vector<int> s_21_vector_empty;
   S21Vector<int> vector_1_ = {1, 2, 3, 4, 5};
   S21Vector<int> vector_2_ = S21Vector<int>(10);
-  std::vector<int> test =  {1, 2, 3, 4, 5};
+  std::vector<int> test = {1, 2, 3, 4, 5};
   std::vector<int> test2 = {10, 20, 30, 40};
   std::vector<int> test_empty;
 };
@@ -76,6 +76,24 @@ TEST_F(S21Vector_test, size) {
   EXPECT_EQ(s_21_vector_empty.size(), 0);
   EXPECT_EQ(vector_1_.size(), 5);
 }
+
+TEST_F(S21Vector_test, max_size) {
+  EXPECT_EQ(test.max_size(), vector_1_.max_size());
+  std::cout << test.max_size() << std::endl;
+  std::cout << vector_1_.max_size() << std::endl;
+}
+
+TEST_F(S21Vector_test, reserve) {
+  EXPECT_ANY_THROW(vector_1_.reserve(vector_1_.max_size() + 1));
+  EXPECT_EQ(vector_1_.capacity(), 5);
+  vector_1_.reserve(10);
+  EXPECT_EQ(vector_1_.capacity(), 10);
+}
+
+TEST_F(S21Vector_test, capasity) {
+  EXPECT_EQ(vector_1_.capacity(), 5);
+}
+
 
 int main(int argc, char *argv[]) {
   testing::InitGoogleTest(&argc, argv);
