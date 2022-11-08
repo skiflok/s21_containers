@@ -16,6 +16,7 @@ class S21Vector_test : public ::testing::Test {
   S21Vector<int> vector_2_ = S21Vector<int>(10);
   std::vector<int> test =  {1, 2, 3, 4, 5};
   std::vector<int> test2 = {10, 20, 30, 40};
+  std::vector<int> test_empty;
 };
 
 TEST_F(S21Vector_test, _operatorCopy) {
@@ -32,6 +33,12 @@ TEST_F(S21Vector_test, _operatorMove) {
 }
 
 TEST_F(S21Vector_test, at) {
+  std::cout << "________" << std::endl;
+//  std::cout << s_21_vector_empty.at(0);
+//  std::cout << test_empty.at(0);
+
+
+  std::cout << "\n________" << std::endl;
 
 }
 

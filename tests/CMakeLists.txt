@@ -1,5 +1,5 @@
 # 'Google_test' is the subproject name
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.21.1)
 project(Google_tests)
 
 include(FetchContent)
