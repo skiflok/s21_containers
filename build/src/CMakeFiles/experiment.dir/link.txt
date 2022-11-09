@@ -1,1 +1,0 @@
-/usr/bin/g++  -g   CMakeFiles/experiment.dir/experiment.cc.o  -o experiment 

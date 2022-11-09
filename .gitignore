@@ -152,3 +152,5 @@ fabric.properties
 
 .idea
 tests/lib
+
+build
