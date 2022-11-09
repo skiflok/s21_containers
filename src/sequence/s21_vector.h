@@ -191,7 +191,7 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(
 template <class value_type>
 typename S21Vector<value_type>::reference S21Vector<value_type>::at(
     S21Vector::size_type pos) {
-  if (pos >= size_ || pos < 0 || !size_) {
+  if (pos >= size_) {
     throw std::out_of_range("pos < 0 or pos >= size_");
   }
   return arr_[pos];
@@ -226,7 +226,7 @@ typename S21Vector<value_type>::iterator S21Vector<value_type>::begin() {
 
 template <class value_type>
 typename S21Vector<value_type>::iterator S21Vector<value_type>::end() {
-  return this->arr_ + size_ - 1;
+  return this->arr_ + size_;
 }
 
 //_____VECTOR_CAPACITY_____
@@ -239,6 +239,7 @@ template <class value_type>
 typename S21Vector<value_type>::size_type S21Vector<value_type>::size() {
   return size_;
 }
+
 template <class value_type>
 typename S21Vector<value_type>::size_type S21Vector<value_type>::max_size()
     const noexcept {
@@ -248,6 +249,7 @@ typename S21Vector<value_type>::size_type S21Vector<value_type>::max_size()
   }
   return static_cast<size_type>(pow(2, bits)) / sizeof(value_type) - 1;
 }
+
 template <class value_type>
 void S21Vector<value_type>::reserve(S21Vector::size_type size) {
   if (size > this->max_size()) throw std::length_error("size > max_size");
@@ -256,24 +258,36 @@ void S21Vector<value_type>::reserve(S21Vector::size_type size) {
     if (arr_ != nullptr) {
       auto *temp = new value_type[size];
       if (!temp) throw std::bad_alloc();
-      std::move(arr_, arr_ + capacity_, temp);
+      std::move(arr_, arr_ + size_, temp);
       std::swap(arr_, temp);
       delete[] temp;
       capacity_ = size;
     }
   }
 }
+
 template <class value_type>
 typename S21Vector<value_type>::size_type S21Vector<value_type>::capacity()
     const {
   return capacity_;
 }
 
+template <class value_type>
+void S21Vector<value_type>::shrink_to_fit() {
+  if (size_ != capacity_) {
+    S21Vector<value_type> temp(size_);
+    std::move(arr_, arr_ + size_, temp.arr_);
+    std::swap(arr_, temp.arr_);
+    capacity_ = std::move(temp.capacity_);
+  }
+}
+
 //_____VECTOR_MODIFIERS_____
 template <class value_type>
 void S21Vector<value_type>::push_back(const_reference value) {
   if (size_ == capacity_) {
-    reserve_more_capacity(size_ * 2);
+    auto size = (size_) ? size_ : 1;
+    reserve_more_capacity(size * 2);
   }
   arr_[size_++] = value;
 }
@@ -281,19 +295,15 @@ void S21Vector<value_type>::push_back(const_reference value) {
 //_____SUPPORT_FUN_____
 
 template <typename T>
-void S21Vector<T>::reserve_more_capacity(size_t size)
-{
-  if (size > capacity_)
-  {
+void S21Vector<T>::reserve_more_capacity(size_t size) {
+  if (size > capacity_) {
     value_type *buff = new value_type[size];
-    for (size_t i = 0; i < size_; ++i)
-      buff[i] = std::move(arr_[i]);
+    for (size_t i = 0; i < size_; ++i) buff[i] = std::move(arr_[i]);
     delete[] arr_;
     arr_ = buff;
     capacity_ = size;
   }
 }
-
 
 }  // namespace s21
 
