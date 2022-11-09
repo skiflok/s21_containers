@@ -76,9 +76,13 @@ TEST_F(S21Vector_test, size) {
 
 TEST_F(S21Vector_test, max_size) {
   // не проходит на маке
-//  EXPECT_EQ(test.max_size(), vector_1_.max_size());
+  EXPECT_EQ(test.max_size(), vector_1_.max_size());
 //  std::cout << test.max_size() << std::endl;
 //  std::cout << vector_1_.max_size() << std::endl;
+//  std::cout << std::numeric_limits<int>::max() << std::endl;
+//  std::cout << SIZE_MAX / sizeof(int) << std::endl;
+
+
 }
 
 TEST_F(S21Vector_test, reserve) {
@@ -98,7 +102,6 @@ TEST_F(S21Vector_test, shrink_to_fit) {
   vector_1_.shrink_to_fit();
   EXPECT_EQ(vector_1_.capacity(), vector_1_.size());
   EXPECT_EQ(vector_1_.size(), 6);
-
 
 }
 

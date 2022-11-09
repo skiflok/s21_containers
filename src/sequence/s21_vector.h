@@ -75,7 +75,8 @@ class S21Vector {
   size_type capacity()
       const;  // returns the number of elements that can be held in
   // currently allocated storage
-  void shrink_to_fit();  // reduces memory usage by freeing unused memory
+  void
+  shrink_to_fit() noexcept;  // reduces memory usage by freeing unused memory
 
   // Vector Modifiers
 
@@ -243,11 +244,12 @@ typename S21Vector<value_type>::size_type S21Vector<value_type>::size() {
 template <class value_type>
 typename S21Vector<value_type>::size_type S21Vector<value_type>::max_size()
     const noexcept {
-  char bits = 63;
-  if (sizeof(void *) == 4) {
-    bits = 31;
-  }
-  return static_cast<size_type>(pow(2, bits)) / sizeof(value_type) - 1;
+  //  char bits = 63;
+  //  if (sizeof(void *) == 4) {
+  //    bits = 31;
+  //  }
+  //  return static_cast<size_type>(pow(2, bits)) / sizeof(value_type) - 1;
+  return SIZE_MAX / sizeof(value_type);
 }
 
 template <class value_type>
@@ -273,7 +275,7 @@ typename S21Vector<value_type>::size_type S21Vector<value_type>::capacity()
 }
 
 template <class value_type>
-void S21Vector<value_type>::shrink_to_fit() {
+void S21Vector<value_type>::shrink_to_fit() noexcept {
   if (size_ != capacity_) {
     S21Vector<value_type> temp(size_);
     std::move(arr_, arr_ + size_, temp.arr_);
