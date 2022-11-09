@@ -294,15 +294,23 @@ void S21Vector<value_type>::push_back(const_reference value) {
 
 //_____SUPPORT_FUN_____
 
-template <typename T>
-void S21Vector<T>::reserve_more_capacity(size_t size) {
+template <typename value_type>
+void S21Vector<value_type>::reserve_more_capacity(size_t size) {
   if (size > capacity_) {
-    value_type *buff = new value_type[size];
+    auto *buff = new value_type[size];
     for (size_t i = 0; i < size_; ++i) buff[i] = std::move(arr_[i]);
     delete[] arr_;
     arr_ = buff;
     capacity_ = size;
   }
+}
+template<class value_type>
+void S21Vector<value_type>::clear() {
+  size_ = 0;
+}
+template <class value_type>
+typename S21Vector<value_type>::iterator S21Vector<value_type>::insert(S21Vector::iterator pos, const_reference value) {
+  return ;
 }
 
 }  // namespace s21
