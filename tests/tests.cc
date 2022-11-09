@@ -14,9 +14,9 @@ class S21Vector_test : public ::testing::Test {
   S21Vector<int> s_21_vector_empty;
   S21Vector<int> vector_1_ = {1, 2, 3, 4, 5};
   S21Vector<int> vector_2_ = S21Vector<int>(10);
+  std::vector<int> test_empty;
   std::vector<int> test = {1, 2, 3, 4, 5};
   std::vector<int> test2 = {10, 20, 30, 40};
-  std::vector<int> test_empty;
 };
 
 TEST_F(S21Vector_test, _operatorCopy) {
@@ -33,13 +33,10 @@ TEST_F(S21Vector_test, _operatorMove) {
 }
 
 TEST_F(S21Vector_test, at) {
-  std::cout << "________" << std::endl;
-//  std::cout << s_21_vector_empty.at(0);
-//  std::cout << test_empty.at(0);
-
-
-  std::cout << "\n________" << std::endl;
-
+  EXPECT_EQ(vector_1_.at(0), test.at(0));
+  EXPECT_EQ(vector_1_.at(1), test.at(1));
+  EXPECT_ANY_THROW(vector_1_.at(7));
+  EXPECT_ANY_THROW(s_21_vector_empty.at(0));
 }
 
 TEST_F(S21Vector_test, brackets) {
@@ -92,6 +89,12 @@ TEST_F(S21Vector_test, reserve) {
 
 TEST_F(S21Vector_test, capasity) {
   EXPECT_EQ(vector_1_.capacity(), 5);
+}
+
+TEST_F(S21Vector_test, push_back) {
+  // обработать если вектор пустой
+  vector_1_.push_back(6);
+  EXPECT_EQ(vector_1_.at(5), 6);
 }
 
 

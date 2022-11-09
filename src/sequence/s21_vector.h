@@ -13,7 +13,7 @@
 
 namespace s21 {
 
-template<class T>
+template <class T>
 class S21Vector {
  public:
   // Vector Member type
@@ -35,7 +35,7 @@ class S21Vector {
   S21Vector(std::initializer_list<value_type> const &items);
   // copy constructor with simplified syntax
   S21Vector(const S21Vector &v)
-      : size_(v.size_), capacity_(v.capacity_), arr_(v.arr_) {};
+      : size_(v.size_), capacity_(v.capacity_), arr_(v.arr_){};
   // move constructor with simplified syntax
   S21Vector(S21Vector &&v) noexcept
       : size_(v.size_), capacity_(v.capacity_), arr_(v.arr_) {
@@ -65,13 +65,15 @@ class S21Vector {
 
   // Vector Capacity
 
-  bool empty();          // checks whether the container is empty
-  size_type size();      // returns the number of elements
-  size_type max_size() const noexcept;  // returns the maximum possible number of elements
+  bool empty();      // checks whether the container is empty
+  size_type size();  // returns the number of elements
+  size_type max_size()
+      const noexcept;  // returns the maximum possible number of elements
   void reserve(
-      size_type size);   // allocate storage of size elements and copies current
+      size_type size);  // allocate storage of size elements and copies current
   // array elements to a newely allocated array
-  size_type capacity() const;  // returns the number of elements that can be held in
+  size_type capacity()
+      const;  // returns the number of elements that can be held in
   // currently allocated storage
   void shrink_to_fit();  // reduces memory usage by freeing unused memory
 
@@ -82,7 +84,7 @@ class S21Vector {
       iterator pos,
       const_reference value);  // inserts elements into concrete pos and returns
   // the iterator that points to the new element
-  void erase(iterator pos);    // erases element at pos
+  void erase(iterator pos);               // erases element at pos
   void push_back(const_reference value);  // adds an element to the end
   void pop_back();                        // removes the last element
   void swap(S21Vector &other);            // swaps the contents
@@ -123,10 +125,11 @@ class S21Vector {
   size_type size_;
   size_type capacity_;
   T *arr_;
+  void reserve_more_capacity(size_t size);
 };
 
 //_____CONSTRUCTORS_____
-template<class value_type>
+template <class value_type>
 S21Vector<value_type>::S21Vector(
     const std::initializer_list<value_type> &items) {
   arr_ = new value_type[items.size()];
@@ -141,7 +144,7 @@ S21Vector<value_type>::S21Vector(
 
 //_____ASSIGNMENT_OPERATORS_____
 // not ready
-template<class value_type>
+template <class value_type>
 S21Vector<value_type> &S21Vector<value_type>::operator=(const S21Vector &v) {
   bool is_not_ready_to_return = true;
 
@@ -162,7 +165,7 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(const S21Vector &v) {
 }
 
 // not ready
-template<class value_type>
+template <class value_type>
 S21Vector<value_type> &S21Vector<value_type>::operator=(
     S21Vector &&v) noexcept {
   if (this != &v) {
@@ -185,66 +188,67 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(
 
 //_____VECTOR_ELEMENT_ACCESS_____
 
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::reference S21Vector<value_type>::at(
     S21Vector::size_type pos) {
-  if ((pos >= size_ || pos < 0) && size_ > 0) {
+  if (pos >= size_ || pos < 0 || !size_) {
     throw std::out_of_range("pos < 0 or pos >= size_");
   }
   return arr_[pos];
 }
 
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::reference S21Vector<value_type>::operator[](
     S21Vector::size_type pos) {
   return arr_[pos];
 }
 
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::const_reference S21Vector<value_type>::front() {
   return at(0);
 }
 
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::const_reference S21Vector<value_type>::back() {
   return at(size_ - 1);
 }
 
-template<class T>
+template <class T>
 T *S21Vector<T>::data() {
   return arr_;
 }
 
 //_____VECTOR_ITERATORS_____
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::iterator S21Vector<value_type>::begin() {
   return this->arr_;
 }
 
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::iterator S21Vector<value_type>::end() {
   return this->arr_ + size_ - 1;
 }
 
 //_____VECTOR_CAPACITY_____
-template<class value_type>
+template <class value_type>
 bool S21Vector<value_type>::empty() {
   return size_ == 0;
 }
 
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::size_type S21Vector<value_type>::size() {
   return size_;
 }
-template<class value_type>
-typename S21Vector<value_type>::size_type S21Vector<value_type>::max_size() const noexcept {
+template <class value_type>
+typename S21Vector<value_type>::size_type S21Vector<value_type>::max_size()
+    const noexcept {
   char bits = 63;
   if (sizeof(void *) == 4) {
     bits = 31;
   }
   return static_cast<size_type>(pow(2, bits)) / sizeof(value_type) - 1;
 }
-template<class value_type>
+template <class value_type>
 void S21Vector<value_type>::reserve(S21Vector::size_type size) {
   if (size > this->max_size()) throw std::length_error("size > max_size");
 
@@ -258,12 +262,38 @@ void S21Vector<value_type>::reserve(S21Vector::size_type size) {
       capacity_ = size;
     }
   }
-
 }
-template<class value_type>
-typename S21Vector<value_type>::size_type S21Vector<value_type>::capacity() const{
+template <class value_type>
+typename S21Vector<value_type>::size_type S21Vector<value_type>::capacity()
+    const {
   return capacity_;
 }
+
+//_____VECTOR_MODIFIERS_____
+template <class value_type>
+void S21Vector<value_type>::push_back(const_reference value) {
+  if (size_ == capacity_) {
+    reserve_more_capacity(size_ * 2);
+  }
+  arr_[size_++] = value;
+}
+
+//_____SUPPORT_FUN_____
+
+template <typename T>
+void S21Vector<T>::reserve_more_capacity(size_t size)
+{
+  if (size > capacity_)
+  {
+    value_type *buff = new value_type[size];
+    for (size_t i = 0; i < size_; ++i)
+      buff[i] = std::move(arr_[i]);
+    delete[] arr_;
+    arr_ = buff;
+    capacity_ = size;
+  }
+}
+
 
 }  // namespace s21
 
