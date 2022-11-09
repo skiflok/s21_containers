@@ -149,7 +149,7 @@ template <class value_type>
 S21Vector<value_type> &S21Vector<value_type>::operator=(const S21Vector &v) {
   bool is_not_ready_to_return = true;
 
-  if (this->arr_ == v.arr_) {
+  if (this == &v) {
     is_not_ready_to_return = false;
   }
 
@@ -161,7 +161,6 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(const S21Vector &v) {
     if (!this->arr_) throw std::bad_alloc();
     std::copy(v.arr_, v.arr_ + size_, this->arr_);
   }
-  std::cout << "EXECUTE operator=(const S21Vector &v)" << std::endl;
   return *this;
 }
 
@@ -183,7 +182,6 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(
     }
   }
   //  std::swap(*this, v);
-  std::cout << "EXECUTE operator=(const S21Vector &&v)" << std::endl;
   return *this;
 }
 
