@@ -313,21 +313,21 @@ void S21Vector<value_type>::clear() {
 template <class value_type>
 typename S21Vector<value_type>::iterator S21Vector<value_type>::insert(
     S21Vector::iterator pos, const_reference value) {
-  size_type new_size = size_;
+  size_type new_capacity = capacity_;
   size_type pos_index = pos - this->begin();
-  if (size_ == capacity_) {
-    new_size *= 2;
+  if (size_ +1 >= capacity_) {
+    new_capacity *= 2;
   }
-  auto *buff = new value_type[new_size];
+  auto *buff = new value_type[new_capacity];
   std::copy(this->begin(), this->begin() + pos_index, buff);
   buff[pos_index] = value;
   std::copy(this->begin() + pos_index, this->begin() + size_,
             buff + pos_index + 1);
   std::swap(arr_, buff);
-  ++size_, capacity_ = new_size;
+  ++size_, capacity_ = new_capacity;
   delete[] buff;
 
-  return &(arr_[pos_index]);
+  return arr_ + pos_index;
 }
 
 }  // namespace s21
