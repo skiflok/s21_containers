@@ -73,14 +73,14 @@ TEST_F(S21Vector_test, size) {
   EXPECT_EQ(vector_1_.size(), 5);
 }
 
-//TEST_F(S21Vector_test, max_size) {
-//  // не проходит на маке
-//  EXPECT_EQ(test.max_size(), vector_1_.max_size());
-////  std::cout << test.max_size() << std::endl;
-////  std::cout << vector_1_.max_size() << std::endl;
-////  std::cout << std::numeric_limits<int>::max() << std::endl;
-////  std::cout << SIZE_MAX / sizeof(int) << std::endl;
-//}
+TEST_F(S21Vector_test, max_size) {
+  // не проходит на маке
+  EXPECT_EQ(test.max_size(), vector_1_.max_size());
+//  std::cout << test.max_size() << std::endl;
+//  std::cout << vector_1_.max_size() << std::endl;
+//  std::cout << std::numeric_limits<int>::max() << std::endl;
+//  std::cout << SIZE_MAX / sizeof(int) << std::endl;
+}
 
 TEST_F(S21Vector_test, reserve) {
   EXPECT_ANY_THROW(vector_1_.reserve(vector_1_.max_size() + 1));
@@ -112,6 +112,19 @@ TEST_F(S21Vector_test, clear) {
   EXPECT_EQ(vector_1_.size(), 5);
   vector_1_.clear();
   EXPECT_EQ(vector_1_.size(), 0);
+}
+
+TEST_F(S21Vector_test, insert) {
+  for (auto it : test) std::cout << it << ' ';
+  std::cout << "\nsize = " << test.size() << std::endl;
+  auto i = test.begin() + 1;
+  auto a = test.insert(i, 19);
+  std::cout << "return insert = " << *a << std::endl;
+
+  for (auto it : test) std::cout << it << ' ';
+  std::cout << "\nsize = " << test.size() << std::endl;
+  std::cout << "capacity = " << test.capacity() << std::endl;
+
 }
 
 

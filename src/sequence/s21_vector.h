@@ -283,6 +283,20 @@ void S21Vector<value_type>::shrink_to_fit() noexcept {
 }
 
 //_____VECTOR_MODIFIERS_____
+template<class value_type>
+void S21Vector<value_type>::clear() {
+  size_ = 0;
+}
+
+template <class value_type>
+typename S21Vector<value_type>::iterator S21Vector<value_type>::insert(S21Vector::iterator pos, const_reference value) {
+  if (pos < begin() || pos > end()) {
+    throw std::out_of_range("pos < begin() || pos > end()");
+  }
+
+  return 0; // возвращает указатель на только что вставленный элемент
+}
+
 template <class value_type>
 void S21Vector<value_type>::push_back(const_reference value) {
   if (size_ == capacity_) {
@@ -303,14 +317,6 @@ void S21Vector<value_type>::reserve_more_capacity(size_t size) {
     arr_ = buff;
     capacity_ = size;
   }
-}
-template<class value_type>
-void S21Vector<value_type>::clear() {
-  size_ = 0;
-}
-template <class value_type>
-typename S21Vector<value_type>::iterator S21Vector<value_type>::insert(S21Vector::iterator pos, const_reference value) {
-  return ;
 }
 
 }  // namespace s21
