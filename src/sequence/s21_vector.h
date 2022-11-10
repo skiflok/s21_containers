@@ -309,22 +309,23 @@ template<class value_type>
 void S21Vector<value_type>::clear() {
   size_ = 0;
 }
+
 template<class value_type>
 typename S21Vector<value_type>::iterator S21Vector<value_type>::insert(S21Vector::iterator pos, const_reference value) {
   size_type new_size = size_;
   size_type pos_index = pos - this->begin();
-  if (size_ + 1 == capacity_) {
+  if (size_ == capacity_) {
     new_size *= 2;
   }
   auto *buff = new value_type[new_size];
   std::copy(this->begin(), this->begin() + pos_index, buff);
   buff[pos_index] = value;
-  std::copy(this->begin() + pos_index + 1, this->end(), buff); // возможно енд -1
+  std::copy(this->begin() + pos_index, this->begin() + size_ , buff + pos_index + 1);
   std::swap(arr_, buff);
+  ++size_, capacity_ = new_size;
   delete [] buff;
 
-
-  return nullptr;
+  return &(arr_[pos_index]);
 }
 
 }  // namespace s21
