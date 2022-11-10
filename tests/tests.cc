@@ -129,16 +129,25 @@ TEST_F(S21Vector_test, insert) {
 
 
 
-//TEST_F(S21Vector_test, userTest) {
-//  std::cout << test.size() << std::endl;
-//  std::cout << test.capacity() << std::endl;
-//  test.clear();
-//  std::cout << test.size() << std::endl;
-//  std::cout << test.capacity() << std::endl;
+TEST_F(S21Vector_test, originVictorClear) {
+  std::cout << test.size() << std::endl;
+  std::cout << test.capacity() << std::endl;
+  test.clear();
+  std::cout << test.size() << std::endl;
+  std::cout << test.capacity() << std::endl;
 //  for (int i = 0; i < 5; ++i) {
 //    std::cout << test[i] << std::endl;
 //  }
-//}
+}
+
+TEST_F(S21Vector_test, originVictorInsert) {
+
+  test.insert(test.begin()+8, 123);
+  for (int i = 0; i < test.size(); ++i) {
+    std::cout << test[i] << "\t";
+  }
+  std::cout << std::endl;
+}
 
 int main(int argc, char *argv[]) {
   testing::InitGoogleTest(&argc, argv);
