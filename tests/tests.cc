@@ -143,7 +143,16 @@ TEST_F(S21Vector_test, popback) {
 }
 
 TEST_F(S21Vector_test, swap) {
+  int *test_vector_1_ = vector_1_.data();
+  int *test_empty = s_21_vector_empty.data();
+  s_21_vector_empty.swap(vector_1_);
+  EXPECT_EQ(s_21_vector_empty.size(), 5);
+  EXPECT_EQ(s_21_vector_empty.capacity(), 5);
+  EXPECT_EQ(s_21_vector_empty.begin(), test_vector_1_);
 
+  EXPECT_EQ(vector_1_.size(), 0);
+  EXPECT_EQ(vector_1_.capacity(), 0);
+  EXPECT_EQ(vector_1_.begin(), test_empty);
 }
 
 TEST_F(S21Vector_test, originVictorClear) {
