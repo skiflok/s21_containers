@@ -13,7 +13,7 @@
 
 namespace s21 {
 
-template<class T>
+template <class T>
 class S21Vector {
  public:
   // Vector Member type
@@ -26,17 +26,11 @@ class S21Vector {
 
   // default constructor (simplified syntax for assigning values to attributes)
   S21Vector() : size_(0U), capacity_(0U), arr_(nullptr) {}
-  // parametrized constructor for fixed size vector (explicit was used in order
-  // to avoid automatic type conversion)
   explicit S21Vector(size_type n)
       : size_(n), capacity_(n), arr_(n ? new T[n] : nullptr) {}
-  // initializer list constructor (allows creating lists with initializer lists,
-  // see main.cpp)
   S21Vector(std::initializer_list<value_type> const &items);
-  // copy constructor with simplified syntax
   S21Vector(const S21Vector &v)
-      : size_(v.size_), capacity_(v.capacity_), arr_(v.arr_) {};
-  // move constructor with simplified syntax
+      : size_(v.size_), capacity_(v.capacity_), arr_(v.arr_){};
   S21Vector(S21Vector &&v) noexcept
       : size_(v.size_), capacity_(v.capacity_), arr_(v.arr_) {
     v.arr_ = nullptr;
@@ -65,26 +59,18 @@ class S21Vector {
 
   // Vector Capacity
 
-  bool empty();      // checks whether the container is empty
-  size_type size();  // returns the number of elements
-  size_type max_size()
-  const noexcept;  // returns the maximum possible number of elements
-  void reserve(
-      size_type size);  // allocate storage of size elements and copies current
-  // array elements to a newely allocated array
-  size_type capacity()
-  const;  // returns the number of elements that can be held in
-  // currently allocated storage
+  bool empty();
+  size_type size();
+  size_type max_size() const noexcept;
+  void reserve(size_type size);
+  size_type capacity() const;
   void
   shrink_to_fit() noexcept;  // reduces memory usage by freeing unused memory
 
   // Vector Modifiers
 
   void clear();  // clears the contents
-  iterator insert(
-      iterator pos,
-      const_reference value);  // inserts elements into concrete pos and returns
-  // the iterator that points to the new element
+  iterator insert(iterator pos, const_reference value);
   void erase(iterator pos);               // erases element at pos
   void push_back(const_reference value);  // adds an element to the end
   void pop_back();                        // removes the last element
@@ -130,7 +116,7 @@ class S21Vector {
 };
 
 //_____CONSTRUCTORS_____
-template<class value_type>
+template <class value_type>
 S21Vector<value_type>::S21Vector(
     const std::initializer_list<value_type> &items) {
   arr_ = new value_type[items.size()];
@@ -145,7 +131,7 @@ S21Vector<value_type>::S21Vector(
 
 //_____ASSIGNMENT_OPERATORS_____
 // not ready
-template<class value_type>
+template <class value_type>
 S21Vector<value_type> &S21Vector<value_type>::operator=(const S21Vector &v) {
   bool is_not_ready_to_return = true;
 
@@ -165,7 +151,7 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(const S21Vector &v) {
 }
 
 // not ready
-template<class value_type>
+template <class value_type>
 S21Vector<value_type> &S21Vector<value_type>::operator=(
     S21Vector &&v) noexcept {
   if (this != &v) {
@@ -187,7 +173,7 @@ S21Vector<value_type> &S21Vector<value_type>::operator=(
 
 //_____VECTOR_ELEMENT_ACCESS_____
 
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::reference S21Vector<value_type>::at(
     S21Vector::size_type pos) {
   if (pos >= size_) {
@@ -196,52 +182,52 @@ typename S21Vector<value_type>::reference S21Vector<value_type>::at(
   return arr_[pos];
 }
 
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::reference S21Vector<value_type>::operator[](
     S21Vector::size_type pos) {
   return arr_[pos];
 }
 
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::const_reference S21Vector<value_type>::front() {
   return at(0);
 }
 
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::const_reference S21Vector<value_type>::back() {
   return at(size_ - 1);
 }
 
-template<class T>
+template <class T>
 T *S21Vector<T>::data() {
   return arr_;
 }
 
 //_____VECTOR_ITERATORS_____
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::iterator S21Vector<value_type>::begin() {
   return this->arr_;
 }
 
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::iterator S21Vector<value_type>::end() {
   return this->arr_ + size_;
 }
 
 //_____VECTOR_CAPACITY_____
-template<class value_type>
+template <class value_type>
 bool S21Vector<value_type>::empty() {
   return size_ == 0;
 }
 
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::size_type S21Vector<value_type>::size() {
   return size_;
 }
 
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::size_type S21Vector<value_type>::max_size()
-const noexcept {
+    const noexcept {
   //  char bits = 63;
   //  if (sizeof(void *) == 4) {
   //    bits = 31;
@@ -250,7 +236,7 @@ const noexcept {
   return SIZE_MAX / sizeof(value_type);
 }
 
-template<class value_type>
+template <class value_type>
 void S21Vector<value_type>::reserve(S21Vector::size_type size) {
   if (size > this->max_size()) throw std::length_error("size > max_size");
 
@@ -266,13 +252,13 @@ void S21Vector<value_type>::reserve(S21Vector::size_type size) {
   }
 }
 
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::size_type S21Vector<value_type>::capacity()
-const {
+    const {
   return capacity_;
 }
 
-template<class value_type>
+template <class value_type>
 void S21Vector<value_type>::shrink_to_fit() noexcept {
   if (size_ != capacity_) {
     S21Vector<value_type> temp(size_);
@@ -283,7 +269,7 @@ void S21Vector<value_type>::shrink_to_fit() noexcept {
 }
 
 //_____VECTOR_MODIFIERS_____
-template<class value_type>
+template <class value_type>
 void S21Vector<value_type>::push_back(const_reference value) {
   if (size_ == capacity_) {
     auto size = (size_) ? size_ : 1;
@@ -293,8 +279,7 @@ void S21Vector<value_type>::push_back(const_reference value) {
 }
 
 //_____SUPPORT_FUN_____
-
-template<typename value_type>
+template <typename value_type>
 void S21Vector<value_type>::reserve_more_capacity(size_t size) {
   if (size > capacity_) {
     auto *buff = new value_type[size];
@@ -305,12 +290,12 @@ void S21Vector<value_type>::reserve_more_capacity(size_t size) {
   }
 }
 
-template<class value_type>
+template <class value_type>
 void S21Vector<value_type>::clear() {
   size_ = 0;
 }
 
-template<class value_type>
+template <class value_type>
 typename S21Vector<value_type>::iterator S21Vector<value_type>::insert(
     S21Vector::iterator pos, const_reference value) {
   size_type new_capacity = capacity_;
@@ -329,15 +314,23 @@ typename S21Vector<value_type>::iterator S21Vector<value_type>::insert(
 
   return arr_ + pos_index;
 }
-template<class value_type>
-void S21Vector<value_type>::erase(S21Vector::iterator pos) {
 
+template <class value_type>
+void S21Vector<value_type>::erase(S21Vector::iterator pos) {
+  auto *buff = new value_type[capacity_];
+  size_type pos_index = pos - begin();
+  std::copy(begin(), begin() + pos_index, buff);
+  std::copy(begin() + pos_index + 1, end(), buff + pos_index);
+  std::swap(arr_, buff);
+  --size_;
 }
-template<class value_type>
+
+template <class value_type>
 void S21Vector<value_type>::pop_back() {
   --size_;
 }
-template<class value_type>
+
+template <class value_type>
 void S21Vector<value_type>::swap(S21Vector &other) {
   std::swap(this->arr_, other.arr_);
   std::swap(this->size_, other.size_);

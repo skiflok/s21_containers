@@ -58,14 +58,14 @@ TEST_F(S21Vector_test, size) {
   EXPECT_EQ(vector_1_.size(), 5);
 }
 
-//TEST_F(S21Vector_test, max_size) {
-// не проходит на маке
-//  EXPECT_EQ(test.max_size(), vector_1_.max_size());
-//  std::cout << test.max_size() << std::endl;
-//  std::cout << vector_1_.max_size() << std::endl;
-//  std::cout << std::numeric_limits<int>::max() << std::endl;
-//  std::cout << SIZE_MAX / sizeof(int) << std::endl;
-//}
+// TEST_F(S21Vector_test, max_size) {
+//  не проходит на маке
+//   EXPECT_EQ(test.max_size(), vector_1_.max_size());
+//   std::cout << test.max_size() << std::endl;
+//   std::cout << vector_1_.max_size() << std::endl;
+//   std::cout << std::numeric_limits<int>::max() << std::endl;
+//   std::cout << SIZE_MAX / sizeof(int) << std::endl;
+// }
 
 TEST_F(S21Vector_test, reserve) {
   EXPECT_ANY_THROW(vector_1_.reserve(vector_1_.max_size() + 1));
@@ -100,13 +100,10 @@ TEST_F(S21Vector_test, insert) {
   vector_1_.insert(vector_1_.end() - 1, 19);
   test.insert(test.end() - 1, 19);
   EXPECT_EQ(vector_1_.at(vector_1_.size() - 1), test.at(test.size() - 1));
-  for (auto it : vector_1_) std::cout << it << ' ';
-  std::cout << "\nsize = " << vector_1_.size() << std::endl;
-  std::cout << "capacity = " << vector_1_.capacity() << std::endl;
   vector_1_.insert(vector_1_.end() - 2, 20);
   test.insert(test.end() - 2, 20);
   EXPECT_EQ(vector_1_.at(vector_1_.size() - 2), test.at(test.size() - 2));
-////  vector_1_.insert(vector_1_.begin() - 2, 20);
+  ////  vector_1_.insert(vector_1_.begin() - 2, 20);
   vector_1_.insert(vector_1_.begin(), 21);
   test.insert(test.begin(), 21);
   EXPECT_EQ(vector_1_.at(0), test.at(0));
@@ -123,7 +120,15 @@ TEST_F(S21Vector_test, insert) {
 }
 
 TEST_F(S21Vector_test, erase) {
-
+  vector_1_.erase(vector_1_.begin());
+  test.erase(test.begin());
+  EXPECT_EQ(vector_1_.at(0), test.at(0));
+  vector_1_.erase(vector_1_.begin() + 1);
+  test.erase(test.begin() + 1);
+  EXPECT_EQ(vector_1_.at(1), test.at(1));
+  vector_1_.erase(vector_1_.end() - 1);
+  test.erase(test.end() - 1);
+  EXPECT_EQ(vector_1_.at(vector_1_.size() - 1), test.at(test.size() - 1));
 }
 
 TEST_F(S21Vector_test, popback) {
@@ -131,15 +136,14 @@ TEST_F(S21Vector_test, popback) {
   vector_1_.pop_back();
   EXPECT_EQ(vector_1_.size(), 4);
 
-
-//  test.pop_back();
-//  std::cout << "\nsize = " << test.size() << std::endl;
-//  std::cout << "capacity = " << test.capacity() << std::endl;
-//  test_empty.pop_back();
-//  std::cout << "\nsize = " << test_empty.size() << std::endl;
-//  std::cout << "capacity = " << test_empty.capacity() << std::endl;
-//  size_t my_size = 0;
-//  std::cout << --my_size << std::endl;
+  //  test.pop_back();
+  //  std::cout << "\nsize = " << test.size() << std::endl;
+  //  std::cout << "capacity = " << test.capacity() << std::endl;
+  //  test_empty.pop_back();
+  //  std::cout << "\nsize = " << test_empty.size() << std::endl;
+  //  std::cout << "capacity = " << test_empty.capacity() << std::endl;
+  //  size_t my_size = 0;
+  //  std::cout << --my_size << std::endl;
 }
 
 TEST_F(S21Vector_test, swap) {
