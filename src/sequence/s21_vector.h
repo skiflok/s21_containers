@@ -329,6 +329,18 @@ typename S21Vector<value_type>::iterator S21Vector<value_type>::insert(
 
   return arr_ + pos_index;
 }
+template<class value_type>
+void S21Vector<value_type>::erase(S21Vector::iterator pos) {
+
+}
+template<class value_type>
+void S21Vector<value_type>::pop_back() {
+
+}
+template<class value_type>
+void S21Vector<value_type>::swap(S21Vector &other) {
+
+}
 
 }  // namespace s21
 

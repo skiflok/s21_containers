@@ -122,6 +122,18 @@ TEST_F(S21Vector_test, insert) {
   //  std::cout << "capacity = " << test.capacity() << std::endl;
 }
 
+TEST_F(S21Vector_test, erase) {
+
+}
+
+TEST_F(S21Vector_test, popback) {
+
+}
+
+TEST_F(S21Vector_test, swap) {
+
+}
+
 TEST_F(S21Vector_test, originVictorClear) {
   //  std::cout << test.size() << std::endl;
   //  std::cout << test.capacity() << std::endl;
