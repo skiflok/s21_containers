@@ -64,8 +64,7 @@ class S21Vector {
   size_type max_size() const noexcept;
   void reserve(size_type size);
   size_type capacity() const;
-  void
-  shrink_to_fit() noexcept;  // reduces memory usage by freeing unused memory
+  void shrink_to_fit() noexcept;
 
   // Vector Modifiers
 
@@ -76,25 +75,19 @@ class S21Vector {
   void pop_back();                        // removes the last element
   void swap(S21Vector &other);            // swaps the contents
 
-  // MY TESTS
-  void TestPrint() { std::cout << "TestPrint" << std::endl; }
-
   bool operator==(const S21Vector<value_type> &other) {
     bool equal = false;
     bool skip = false;
-
     if (this == &other) {
       equal = true;
       skip = true;
     }
-
     if (!skip) {
       if (this->size_ != other.size_ || this->capacity_ != other.capacity_) {
         equal = false;
         skip = true;
       }
     }
-
     if (!skip) {
       equal = true;
       for (int i = 0; i < this->size_; ++i) {
@@ -104,7 +97,6 @@ class S21Vector {
         }
       }
     }
-
     return equal;
   }
 
