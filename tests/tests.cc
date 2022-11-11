@@ -127,7 +127,19 @@ TEST_F(S21Vector_test, erase) {
 }
 
 TEST_F(S21Vector_test, popback) {
+  EXPECT_EQ(vector_1_.size(), 5);
+  vector_1_.pop_back();
+  EXPECT_EQ(vector_1_.size(), 4);
 
+
+//  test.pop_back();
+//  std::cout << "\nsize = " << test.size() << std::endl;
+//  std::cout << "capacity = " << test.capacity() << std::endl;
+//  test_empty.pop_back();
+//  std::cout << "\nsize = " << test_empty.size() << std::endl;
+//  std::cout << "capacity = " << test_empty.capacity() << std::endl;
+//  size_t my_size = 0;
+//  std::cout << --my_size << std::endl;
 }
 
 TEST_F(S21Vector_test, swap) {
