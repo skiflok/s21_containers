@@ -177,19 +177,26 @@ TEST_F(S21Vector_test, originVictorInsert) {
   //  }
   //  std::cout << std::endl;
   // ---- exp >>>
-//    std::vector<std::vector<int>> vtr{{1, 2, 3}, {4, 5, 6,}, {7, 8, 9}};
-//    for (auto it = vtr.begin(); it != vtr.end(); ++it) {
-//      for (auto it_ = (*it).begin(); it_ != (*it).end(); ++it_ ) {
-//        std::cout << (*it_)  << ' ';
-//      }
-//      std::cout << std::endl;
-//    }
+  //    std::vector<std::vector<int>> vtr{{1, 2, 3}, {4, 5, 6,}, {7, 8, 9}};
+  //    for (auto it = vtr.begin(); it != vtr.end(); ++it) {
+  //      for (auto it_ = (*it).begin(); it_ != (*it).end(); ++it_ ) {
+  //        std::cout << (*it_)  << ' ';
+  //      }
+  //      std::cout << std::endl;
+  //    }
   //  <<< exp ----
-  //    auto i = vtr.begin()->begin();
-//    i++;
-//    std::cout << *i << std::endl;
-//    std::cout << *(vtr.begin()->end() - 1);
-//    std::cout << *((vtr.begin() + 1)->begin());
+  //  auto i = test.begin();
+  //      auto i = vtr.begin()->begin();
+  //    i++;
+//   std::vector<int>::iterator i;
+//   auto it = test.begin();
+//   auto a = *it;
+
+
+  SequenceContainer<int> one;
+  std::cout << *(one.begin() + 1) << std::endl;
+//  SequenceContainer<int>::Iterator a;
+
 }
 
 int main(int argc, char *argv[]) {

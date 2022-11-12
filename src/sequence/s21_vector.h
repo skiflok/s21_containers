@@ -11,10 +11,13 @@
 #include <utility>
 #include <valarray>
 
+#include "sequence_container.h"
+#include "../container.h"
+
 namespace s21 {
 
 template <class T>
-class S21Vector {
+class S21Vector : SequenceContainer<T>{
  public:
   // Vector Member type
   using value_type = T;

@@ -6,20 +6,15 @@
 #define S21_CONTAINERS_SRC_CONTAINER_H_
 
 namespace s21 {
-
+template <class T>
 class Container {
-
  public:
-  Container(){}
-  virtual ~Container() = 0;
-
- private:
-
+  Container() {}
+  virtual ~Container() {}
 };
 
-Container::~Container() {}
+// Container::~Container() {}
 
+}  // namespace s21
 
-} // s21
-
-#endif //S21_CONTAINERS_SRC_CONTAINER_H_
+#endif  // S21_CONTAINERS_SRC_CONTAINER_H_
