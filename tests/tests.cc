@@ -194,7 +194,7 @@ TEST_F(S21Vector_test, originVictorInsert) {
 
 
   SequenceContainer<int> one;
-  std::cout << *(one.begin() + 1) << std::endl;
+  std::cout << *(one.begin()+1) << std::endl;
 //  SequenceContainer<int>::Iterator a;
 
 }

@@ -19,12 +19,12 @@ class SequenceContainer {
 
   SequenceContainer() {
     arr_ = new value_type[5]{1, 2, 3, 4, 5};
-    //    *arr_ = 5;
+    iterator_.SetData(arr_);
   }
   ~SequenceContainer() {}
 
-  class Iterator;
-  friend class Iterator;
+//  class Iterator;
+//  friend class Iterator;
 
   class Iterator {
    public:
@@ -34,6 +34,10 @@ class SequenceContainer {
     Iterator(pointer pt) : data_(pt) {}
 
     Iterator(const Iterator &other) : data_(other.data_) {}
+
+    void SetData(pointer data) {
+      data_ = data;
+    }
 
     value_type operator*() { return *data_; }
     Iterator operator+(size_type size) {
@@ -50,11 +54,14 @@ class SequenceContainer {
  public:
   using iterator = Iterator;
   pointer arr_{};
-//  iterator iterator_;
+  iterator iterator_;
+
+  T *data() {
+    return arr_;
+  }
 
   iterator begin() {
-    iterator temp(arr_);
-    return temp;
+    return iterator_;
   }
 };
 
