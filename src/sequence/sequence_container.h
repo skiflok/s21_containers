@@ -20,8 +20,8 @@ class SequenceContainer : public Container {
 
 };
 
-template<class T>
-SequenceContainer::~SequenceContainer() {}
+//template<class T>
+//SequenceContainer::~SequenceContainer() {}
 
 } // s21
 

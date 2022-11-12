@@ -1,0 +1,17 @@
+//
+// Created by Lok on 12.11.2022.
+//
+
+#ifndef S21_CONTAINERS_SRC_SEQUENCE_S21_LIST_H_
+#define S21_CONTAINERS_SRC_SEQUENCE_S21_LIST_H_
+
+namespace s21 {
+
+
+
+
+
+
+}
+
+#endif //S21_CONTAINERS_SRC_SEQUENCE_S21_LIST_H_
