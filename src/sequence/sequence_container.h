@@ -21,8 +21,8 @@ class SequenceContainer {
   using size_type = size_t;
 
 //  SequenceContainer() : size_(5), arr_(new value_type[size_]{1, 2, 3, 4, 5}) {}
-  SequenceContainer()= default;
-  ~SequenceContainer(){}
+//  SequenceContainer()= default;
+//  ~SequenceContainer(){}
 
   class Iterator {
    public:
@@ -84,7 +84,7 @@ class SequenceContainer {
     return temp;
   }
 
- private:
+ protected:
   size_type size_{};
   T *arr_{};
 };

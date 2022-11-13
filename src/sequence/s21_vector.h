@@ -104,9 +104,9 @@ class S21Vector : public SequenceContainer<T>{
   }
 
  private:
-  size_type size_;
+//  size_type size_;
   size_type capacity_;
-  T *arr_;
+//  T *arr_;
   void reserve_more_capacity(size_t size);
 };
 
@@ -299,7 +299,7 @@ typename S21Vector<value_type>::iterator S21Vector<value_type>::insert(
     new_capacity *= 2;
   }
   auto *buff = new value_type[new_capacity];
-  std::copy((*this->begin(), *this->begin() + pos_index, buff);
+  std::copy(*this->begin(), *this->begin() + pos_index, buff);
   buff[pos_index] = value;
   std::copy(this->begin() + pos_index, this->begin() + size_,
             buff + pos_index + 1);
@@ -307,7 +307,7 @@ typename S21Vector<value_type>::iterator S21Vector<value_type>::insert(
   ++size_, capacity_ = new_capacity;
   delete[] buff;
 
-  return arr_ + pos_index;
+  return this->begin() + pos_index;
 }
 
 template <class value_type>

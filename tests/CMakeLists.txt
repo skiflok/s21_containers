@@ -12,9 +12,9 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_executable(Google_Tests_run test_sequence.cc)
+#add_executable(Google_Tests_run test_sequence.cc)
 
-#add_executable(Google_Tests_run tests.cc)
+add_executable(Google_Tests_run tests.cc)
 
 
 #target_link_libraries(Google_Tests_run for_testing pair)
