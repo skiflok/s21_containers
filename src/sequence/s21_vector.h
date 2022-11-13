@@ -17,13 +17,13 @@
 namespace s21 {
 
 template <class T>
-class S21Vector : SequenceContainer<T>{
+class S21Vector : public SequenceContainer<T>{
  public:
   // Vector Member type
   using value_type = T;
   using reference = T &;
   using const_reference = const T &;
-  using iterator = T *;
+  using iterator = typename SequenceContainer<value_type>::Iterator;
   using const_iterator = const T *;
   using size_type = size_t;
 
@@ -57,8 +57,8 @@ class S21Vector : SequenceContainer<T>{
 
   // Vector Iterators
 
-  iterator begin();  // returns an iterator to the beginning
-  iterator end();    // returns an iterator to the end
+//  iterator begin();  // returns an iterator to the beginning
+//  iterator end();    // returns an iterator to the end
 
   // Vector Capacity
 
@@ -199,15 +199,15 @@ T *S21Vector<T>::data() {
 }
 
 //_____VECTOR_ITERATORS_____
-template <class value_type>
-typename S21Vector<value_type>::iterator S21Vector<value_type>::begin() {
-  return this->arr_;
-}
-
-template <class value_type>
-typename S21Vector<value_type>::iterator S21Vector<value_type>::end() {
-  return this->arr_ + size_;
-}
+//template <class value_type>
+//typename SequenceContainer<value_type>::Iterator S21Vector<value_type>::begin()  {
+//  return this->arr_;
+//}
+//
+//template <class value_type>
+//typename S21Vector<value_type>::iterator S21Vector<value_type>::end() {
+//  return this->arr_ + size_;
+//}
 
 //_____VECTOR_CAPACITY_____
 template <class value_type>

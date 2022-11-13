@@ -190,7 +190,7 @@ TEST_F(S21Vector_test, originVictorInsert) {
   //      auto i = vtr.begin()->begin();
   //    i++;
 //   std::vector<int>::iterator i;
-//   auto it = test.begin();
+   auto it = test.begin();
 //   auto a = *it;
 
   SequenceContainer<int> one;

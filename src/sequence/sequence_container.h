@@ -37,12 +37,7 @@ class SequenceContainer {
     }
     ~Iterator() = default;
 
-//    ConstIterator &operator++();
-//    ConstIterator operator++(int);
-//    ConstIterator &operator--();
-//    ConstIterator operator--(int);
-//    operator const_pointer() { return this->data_; }
-//    const_reference operator*();
+
 //    ConstIterator operator+(const size_t value);
 //    bool operator!=(const ConstIterator &other) const;
 //    bool operator==(const ConstIterator &other) const;
@@ -51,17 +46,32 @@ class SequenceContainer {
     Iterator operator+(size_type size) {
       return (data_ + size);
     }
-//    Iterator operator++() {
-//      data_++;
-//      return *this;
-//    }
+    Iterator operator++() {
+      ++data_;
+      return *this;
+    }
     Iterator operator++(int) {
       Iterator temp(*this);
       this->data_++;
       return temp;
     }
     Iterator operator--() {
-      return (--data_);
+      --data_;
+      return *this;
+    }
+    Iterator operator--(int) {
+      Iterator temp(*this);
+      this->data_--;
+      return temp;
+    }
+
+    Iterator operator-(size_type value) {
+      data_ -= value;
+      return *this;
+    }
+
+    ptrdiff_t operator-(Iterator &value) {
+      return this->data_ - value.data_;
     }
 
    protected:
