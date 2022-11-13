@@ -12,7 +12,7 @@
 #include <valarray>
 
 #include "sequence_container.h"
-#include "../container.h"
+//#include "../container.h"
 
 namespace s21 {
 
@@ -20,12 +20,19 @@ template <class T>
 class S21Vector : public SequenceContainer<T>{
  public:
   // Vector Member type
-  using value_type = T;
-  using reference = T &;
-  using const_reference = const T &;
-  using iterator = typename SequenceContainer<value_type>::Iterator;
-  using const_iterator = const T *;
-  using size_type = size_t;
+//  using value_type = T;
+//  using reference = T &;
+//  using const_reference = const T &;
+//  using iterator = typename SequenceContainer<value_type>::Iterator;
+//  using const_iterator = const T *;
+//  using size_type = size_t;
+
+  using value_type = typename SequenceContainer<T>::value_type;
+  using reference = typename SequenceContainer<T>::reference;
+  using const_reference = typename SequenceContainer<T>::const_reference;
+  using iterator = typename SequenceContainer<T>::Iterator;
+  using const_iterator = typename SequenceContainer<T>::const_iterator;
+  using size_type = typename SequenceContainer<T>::size_type;
 
   // default constructor (simplified syntax for assigning values to attributes)
   S21Vector() : size_(0U), capacity_(0U), arr_(nullptr) {}
