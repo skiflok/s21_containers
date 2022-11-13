@@ -14,6 +14,9 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(Google_Tests_run test_sequence.cc)
 
+#add_executable(Google_Tests_run tests.cc)
+
+
 #target_link_libraries(Google_Tests_run for_testing pair)
 
 target_link_libraries(Google_Tests_run gtest gtest_main)

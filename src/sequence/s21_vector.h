@@ -57,8 +57,8 @@ class S21Vector : public SequenceContainer<T>{
 
   // Vector Iterators
 
-//  iterator begin();  // returns an iterator to the beginning
-//  iterator end();    // returns an iterator to the end
+//  iterator begin() {return SequenceContainer<value_type>::begin();};  // returns an iterator to the beginning
+//  iterator end() {return SequenceContainer<value_type>::end();};    // returns an iterator to the end
 
   // Vector Capacity
 
@@ -299,7 +299,7 @@ typename S21Vector<value_type>::iterator S21Vector<value_type>::insert(
     new_capacity *= 2;
   }
   auto *buff = new value_type[new_capacity];
-  std::copy(this->begin(), this->begin() + pos_index, buff);
+  std::copy((this->begin(), this->begin() + pos_index, buff);
   buff[pos_index] = value;
   std::copy(this->begin() + pos_index, this->begin() + size_,
             buff + pos_index + 1);
@@ -313,9 +313,9 @@ typename S21Vector<value_type>::iterator S21Vector<value_type>::insert(
 template <class value_type>
 void S21Vector<value_type>::erase(S21Vector::iterator pos) {
   auto *buff = new value_type[capacity_];
-  size_type pos_index = pos - begin();
-  std::copy(begin(), begin() + pos_index, buff);
-  std::copy(begin() + pos_index + 1, end(), buff + pos_index);
+  size_type pos_index = pos - this->begin();
+  std::copy(this->begin(), this->begin() + pos_index, buff);
+  std::copy(this->begin() + pos_index + 1, this->end(), buff + pos_index);
   std::swap(arr_, buff);
   --size_;
 }

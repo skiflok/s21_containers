@@ -38,3 +38,8 @@ TEST_F(Sequence_test, operator_minus) {
   std::cout << (v.begin()-v.end()) <<std::endl;
   std::cout << *(v.begin()-2) <<std::endl;
 }
+
+TEST_F(Sequence_test, operator_compare) {
+  std::cout << (s.begin() == s.begin() ? "Equal " : "Doesn't equal ") << std::endl;
+
+}

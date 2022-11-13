@@ -9,7 +9,7 @@
 
 namespace s21 {
 
-template<class T>
+template <class T>
 class SequenceContainer {
  public:
   class Iterator;
@@ -20,9 +20,7 @@ class SequenceContainer {
   using const_iterator = const Iterator;
   using size_type = size_t;
 
-  SequenceContainer() {
-    arr_ = new value_type[5]{1, 2, 3, 4, 5};
-  }
+  SequenceContainer() : size_(5), arr_(new value_type[size_]{1, 2, 3, 4, 5}) {}
 
   ~SequenceContainer();
 
@@ -31,34 +29,34 @@ class SequenceContainer {
     Iterator() = default;
     explicit Iterator(T *pt) : data_(pt) {}
     Iterator(const Iterator &other) : data_(other.data_) {}
-    Iterator& operator=(const Iterator& other) {
+    Iterator &operator=(const Iterator &other) {
       this->data_ = other.data_;
       return *this;
     }
     ~Iterator() = default;
 
-
-//    ConstIterator operator+(const size_t value);
-//    bool operator!=(const ConstIterator &other) const;
-//    bool operator==(const ConstIterator &other) const;
+    //    ConstIterator operator+(const size_t value);
+    //    bool operator!=(const ConstIterator &other) const;
+    //    bool operator==(const ConstIterator &other) const;
 
     reference operator*() { return *data_; }
-    Iterator operator+(size_type size) {
-      return (data_ + size);
-    }
+    Iterator operator+(size_type size) { return (data_ + size); }
     Iterator operator++() {
       ++data_;
       return *this;
     }
+
     Iterator operator++(int) {
       Iterator temp(*this);
       this->data_++;
       return temp;
     }
+
     Iterator operator--() {
       --data_;
       return *this;
     }
+
     Iterator operator--(int) {
       Iterator temp(*this);
       this->data_--;
@@ -70,30 +68,31 @@ class SequenceContainer {
       return *this;
     }
 
-    ptrdiff_t operator-(Iterator &value) {
-      return this->data_ - value.data_;
-    }
+    ptrdiff_t operator-(Iterator &value) { return this->data_ - value.data_; }
+
+    bool operator==(const Iterator &other) { return data_ == other.data_; }
+
+    bool operator!=(const Iterator &other) { return !(*this == other); }
 
    protected:
-    T* data_{};
+    T *data_{};
   };
 
-  virtual Iterator begin() {
-    Iterator temp(this->arr_);
+  virtual iterator begin() {
+    iterator temp(this->arr_);
     return temp;
   }
 
-  virtual Iterator end() {
-    Iterator temp(this->arr_);
+  virtual iterator end() {
+    iterator temp(this->arr_ + size_);
     return temp;
   }
-
 
  private:
-  T *arr_;
-
+  size_type size_{};
+  T *arr_{};
 };
-template<class T>
+template <class T>
 SequenceContainer<T>::~SequenceContainer() = default;
 
 // template <class value_type>
