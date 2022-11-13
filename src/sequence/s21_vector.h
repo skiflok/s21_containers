@@ -299,7 +299,7 @@ typename S21Vector<value_type>::iterator S21Vector<value_type>::insert(
     new_capacity *= 2;
   }
   auto *buff = new value_type[new_capacity];
-  std::copy((this->begin(), this->begin() + pos_index, buff);
+  std::copy((*this->begin(), *this->begin() + pos_index, buff);
   buff[pos_index] = value;
   std::copy(this->begin() + pos_index, this->begin() + size_,
             buff + pos_index + 1);

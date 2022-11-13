@@ -20,9 +20,9 @@ class SequenceContainer {
   using const_iterator = const Iterator;
   using size_type = size_t;
 
-  SequenceContainer() : size_(5), arr_(new value_type[size_]{1, 2, 3, 4, 5}) {}
-
-  ~SequenceContainer();
+//  SequenceContainer() : size_(5), arr_(new value_type[size_]{1, 2, 3, 4, 5}) {}
+  SequenceContainer()= default;
+  ~SequenceContainer(){}
 
   class Iterator {
    public:
@@ -34,10 +34,6 @@ class SequenceContainer {
       return *this;
     }
     ~Iterator() = default;
-
-    //    ConstIterator operator+(const size_t value);
-    //    bool operator!=(const ConstIterator &other) const;
-    //    bool operator==(const ConstIterator &other) const;
 
     reference operator*() { return *data_; }
     Iterator operator+(size_type size) { return (data_ + size); }
@@ -70,9 +66,9 @@ class SequenceContainer {
 
     ptrdiff_t operator-(Iterator &value) { return this->data_ - value.data_; }
 
-    bool operator==(const Iterator &other) { return data_ == other.data_; }
+    bool operator==(const Iterator &other) { return this->data_ == other.data_; }
 
-    bool operator!=(const Iterator &other) { return !(*this == other); }
+    bool operator!=(const Iterator &other) { return this->data_ != other.data_; }
 
    protected:
     T *data_{};
@@ -92,8 +88,6 @@ class SequenceContainer {
   size_type size_{};
   T *arr_{};
 };
-template <class T>
-SequenceContainer<T>::~SequenceContainer() = default;
 
 // template <class value_type>
 // typename S21Vector<value_type>::iterator S21Vector<value_type>::begin() {
