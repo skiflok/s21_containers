@@ -13,15 +13,17 @@ template<class T>
 class SequenceContainer : public Container {
 
  public:
-  SequenceContainer(){}
-  virtual ~SequenceContainer() =0;
+  SequenceContainer() : Container(){}
+  ~SequenceContainer() = default;
 
+
+  void GetData() {
+    return data;
+  }
  private:
 
 };
 
-template<class T>
-SequenceContainer::~SequenceContainer() {}
 
 } // s21
 

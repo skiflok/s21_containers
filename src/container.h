@@ -10,14 +10,14 @@ namespace s21 {
 class Container {
 
  public:
-  Container(){}
-  virtual ~Container() = 0;
+//  Container(){}
+//  virtual ~Container() = 0;
 
- private:
-
+ protected:
+  int data;
 };
 
-Container::~Container() {}
+//Container::~Container() {}
 
 
 } // s21
