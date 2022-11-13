@@ -19,7 +19,7 @@ class SequenceContainer {
 
   SequenceContainer() {
     arr_ = new value_type[5]{1, 2, 3, 4, 5};
-    iterator_.SetData(arr_);
+//    iterator_.SetData(arr_);
   }
   ~SequenceContainer() {}
 
@@ -54,14 +54,15 @@ class SequenceContainer {
  public:
   using iterator = Iterator;
   pointer arr_{};
-  iterator iterator_;
+//  iterator iterator_;
 
   T *data() {
     return arr_;
   }
 
   iterator begin() {
-    return iterator_;
+    iterator temp(this->arr_);
+    return temp;
   }
 };
 

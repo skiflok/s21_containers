@@ -3,6 +3,7 @@
 //#include <utility>
 #include <vector>
 
+
 #include "../src/sequence/s21_vector.h"
 
 using namespace s21;
@@ -192,8 +193,8 @@ TEST_F(S21Vector_test, originVictorInsert) {
 //   auto it = test.begin();
 //   auto a = *it;
 
-
   SequenceContainer<int> one;
+  SequenceContainer<int> two;
   std::cout << *(one.begin()+1) << std::endl;
 //  SequenceContainer<int>::Iterator a;
 
