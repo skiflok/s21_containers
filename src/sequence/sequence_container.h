@@ -36,7 +36,11 @@ class SequenceContainer {
     ~Iterator() = default;
 
     reference operator*() { return *data_; }
-    Iterator operator+(size_type size) { return (data_ + size); }
+    Iterator operator+(size_type size) {
+      Iterator temp(*this);
+      temp.data_ += size;
+      return temp;
+    }
     Iterator operator++() {
       ++data_;
       return *this;
@@ -65,6 +69,8 @@ class SequenceContainer {
     }
 
     ptrdiff_t operator-(Iterator &value) { return this->data_ - value.data_; }
+
+    ptrdiff_t operator-(const Iterator &value) { return this->data_ - value.data_; }
 
     bool operator==(const Iterator &other) { return this->data_ == other.data_; }
 

@@ -17,15 +17,15 @@
 namespace s21 {
 
 template <class T>
-class S21Vector : public SequenceContainer<T>{
+class S21Vector : public SequenceContainer<T> {
  public:
   // Vector Member type
-//  using value_type = T;
-//  using reference = T &;
-//  using const_reference = const T &;
-//  using iterator = typename SequenceContainer<value_type>::Iterator;
-//  using const_iterator = const T *;
-//  using size_type = size_t;
+  //  using value_type = T;
+  //  using reference = T &;
+  //  using const_reference = const T &;
+  //  using iterator = typename SequenceContainer<value_type>::Iterator;
+  //  using const_iterator = const T *;
+  //  using size_type = size_t;
 
   using value_type = typename SequenceContainer<T>::value_type;
   using reference = typename SequenceContainer<T>::reference;
@@ -33,16 +33,23 @@ class S21Vector : public SequenceContainer<T>{
   using iterator = typename SequenceContainer<T>::Iterator;
   using const_iterator = typename SequenceContainer<T>::const_iterator;
   using size_type = typename SequenceContainer<T>::size_type;
+  using SequenceContainer<T>::arr_;
+  using SequenceContainer<T>::size_;
 
   // default constructor (simplified syntax for assigning values to attributes)
-  S21Vector() : size_(0U), capacity_(0U), arr_(nullptr) {}
-  explicit S21Vector(size_type n)
-      : size_(n), capacity_(n), arr_(n ? new T[n] : nullptr) {}
+  S21Vector() { size_ = 0U, capacity_ = 0U, arr_ = nullptr; }
+
+  explicit S21Vector(size_type n) {
+    size_ = n;
+    capacity_ = n;
+    arr_ = n ? new T[n] : nullptr;
+  }
   S21Vector(std::initializer_list<value_type> const &items);
-  S21Vector(const S21Vector &v)
-      : size_(v.size_), capacity_(v.capacity_), arr_(v.arr_){};
-  S21Vector(S21Vector &&v) noexcept
-      : size_(v.size_), capacity_(v.capacity_), arr_(v.arr_) {
+  S21Vector(const S21Vector &v) {
+    size_ = v.size_, capacity_ = v.capacity_, arr_ = v.arr_;
+  };
+  S21Vector(S21Vector &&v) noexcept {
+    size_ = v.size_, capacity_ = v.capacity_, arr_ = v.arr_;
     v.arr_ = nullptr;
     v.size_ = 0;
   }
@@ -64,8 +71,10 @@ class S21Vector : public SequenceContainer<T>{
 
   // Vector Iterators
 
-//  iterator begin() {return SequenceContainer<value_type>::begin();};  // returns an iterator to the beginning
-//  iterator end() {return SequenceContainer<value_type>::end();};    // returns an iterator to the end
+  //  iterator begin() {return SequenceContainer<value_type>::begin();};  //
+  //  returns an iterator to the beginning iterator end() {return
+  //  SequenceContainer<value_type>::end();};    // returns an iterator to the
+  //  end
 
   // Vector Capacity
 
@@ -111,9 +120,9 @@ class S21Vector : public SequenceContainer<T>{
   }
 
  private:
-//  size_type size_;
+  //  size_type size_;
   size_type capacity_;
-//  T *arr_;
+  //  T *arr_;
   void reserve_more_capacity(size_t size);
 };
 
@@ -206,13 +215,14 @@ T *S21Vector<T>::data() {
 }
 
 //_____VECTOR_ITERATORS_____
-//template <class value_type>
-//typename SequenceContainer<value_type>::Iterator S21Vector<value_type>::begin()  {
+// template <class value_type>
+// typename SequenceContainer<value_type>::Iterator
+// S21Vector<value_type>::begin()  {
 //  return this->arr_;
 //}
 //
-//template <class value_type>
-//typename S21Vector<value_type>::iterator S21Vector<value_type>::end() {
+// template <class value_type>
+// typename S21Vector<value_type>::iterator S21Vector<value_type>::end() {
 //  return this->arr_ + size_;
 //}
 
@@ -299,16 +309,16 @@ void S21Vector<value_type>::clear() {
 
 template <class value_type>
 typename S21Vector<value_type>::iterator S21Vector<value_type>::insert(
-    S21Vector::iterator pos, const_reference value) {
+    iterator pos, const_reference value) {
   size_type new_capacity = capacity_;
   size_type pos_index = pos - this->begin();
   if (size_ + 1 >= capacity_) {
     new_capacity *= 2;
   }
   auto *buff = new value_type[new_capacity];
-  std::copy(*this->begin(), *this->begin() + pos_index, buff);
+  std::copy(this->begin(), (this->begin() + pos_index), buff);
   buff[pos_index] = value;
-  std::copy(this->begin() + pos_index, this->begin() + size_,
+  std::copy((this->begin() + pos_index), (this->begin() + size_),
             buff + pos_index + 1);
   std::swap(arr_, buff);
   ++size_, capacity_ = new_capacity;
