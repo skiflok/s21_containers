@@ -100,7 +100,7 @@ class SequenceContainer {
   }
 
  protected:
-  size_type size_;
+  size_type size_{};
   T *arr_;
 };
 
